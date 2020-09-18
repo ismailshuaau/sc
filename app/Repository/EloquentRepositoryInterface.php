@@ -2,8 +2,17 @@
 
 namespace App\Repositories;
 
-interface ReportRepositoryInterface
-{
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+
+
+/**
+ * Interface EloquentRepositoryInterface
+ * @package App\Repositories
+ */
+
+ interface EloquentRepositoryInterface
+ {
     /**
      * Display a listing of the resource.
      *
@@ -32,38 +41,35 @@ interface ReportRepositoryInterface
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report);
+    public function show(Request $request);
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Report $report);
-
-
-     /**
-     * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report);
+    public function edit(Request $request);
+
+
+    //  /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request);
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report);
-
-
-}
+    public function destroy(Request $report);
+ }

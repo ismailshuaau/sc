@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Report;
 use Illuminate\Http\Request;
-use App\Services\ReportService;
+use App\Repositories\ReportRepositoryInterface;
 
 class ReportController extends Controller
 {
     /**
-     * @var reportService
+     * @var ReportRepositoryInterface
      */
-    protected $reportService;
+    protected $report;
+
 
     /**
-     * @param ReportService $reportService
+     * @param ReportRepositoryInterface $reportRepository
      */
-    public function __construct(ReportService $reportService)
+    public function __construct(ReportRepositoryInterface $reportRepository)
     {
-        $this->reportService = $reportService;
+        $this->reportRepository = $reportRepository;
     }
 
 
@@ -30,6 +30,8 @@ class ReportController extends Controller
     public function index()
     {
         //
+        $reportRepository = $this->reportRepository->index();
+        dd($reportRepository);
         return view('dashboard.index');
     }
 
@@ -60,7 +62,7 @@ class ReportController extends Controller
         $result = ['status' => 200];
 
         try {
-            $result['data'] = $this->reportService->saveReportData($data);
+            $result['data'] = $this->reportRepository->store($data);
         } catch (Exception $e) {
             $result = [
                 'status' => 500,
