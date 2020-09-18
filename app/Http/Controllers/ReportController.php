@@ -30,9 +30,9 @@ class ReportController extends Controller
     public function index()
     {
         //
-        $reportRepository = $this->reportRepository->index();
-        dd($reportRepository);
-        return view('dashboard.index');
+        $reports = $this->reportRepository->index();
+        // dd($reports);
+        return view('dashboard.index', compact($reports));
     }
 
     /**
