@@ -32,7 +32,7 @@ class ReportController extends Controller
         //
         $reports = $this->reportRepository->index();
         // dd($reports);
-        // return view('dashboard.index', compact($reports));
+        return view('dashboard.index', compact('reports'));
     }
 
     /**

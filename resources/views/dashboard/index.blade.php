@@ -23,29 +23,45 @@
         </style>
     </head>
     <body>
-            <div class="sidebar">
+            <!-- <div class="sidebar">
 
-            </div>
+            </div> -->
             <div class="cotainer">
                 <form id="reportForm">
                     @csrf
                     <input type="text" id="title">
-                    <button id="ajaxSubmit">Submit</button>
+                    <button id="ajaxSubmit" value="save">Submit</button>
                 </form>
+            </div>
+            <div>
+                <ul id="list">
+                    @foreach($reports as $report)
+                    <li>{{ $report->title }}</li>
+                    @endforeach
+                    <li></li>
+                </ul>
             </div>
             <!-- List of the Reports in the database -->
 
             <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
             <script>
-                jQuery(document).ready(function() {
-                    jQuery('#ajaxSubmit').click(function(e){
-                        console.log('test');
+                $(document).ready(function() {
+
+
+                    $('#ajaxSubmit').click(function(e){
                         e.preventDefault();
+
+                        let button = $('#ajaxSubmit').val();
+
+                        console.log(button);
+
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
                         });
-                        jQuery.ajax({
+
+
+                        $.ajax({
                             url: "{{ url('/report') }}",
                             method: 'post',
                             data: {
@@ -53,6 +69,8 @@
                             },
                             success: function(result) {
                                 console.log(result);
+                                let report = '<li>' + result.data.title + '</li>';
+                                $('#list').append(report);
                             }
                         })
                     });
