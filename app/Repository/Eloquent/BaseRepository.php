@@ -54,7 +54,7 @@ class BaseRepository implements EloquentRepositoryInterface
      */
     public function store(array $data)
     {
-        $this->model->create($data);
+        return $this->model->create($data);
     }
 
     /**

@@ -32,7 +32,7 @@ class ReportController extends Controller
         //
         $reports = $this->reportRepository->index();
         // dd($reports);
-        return view('dashboard.index', compact($reports));
+        // return view('dashboard.index', compact($reports));
     }
 
     /**
@@ -53,16 +53,14 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only([
-            'title'
-        ]);
-
-        // dd($data);
-
         $result = ['status' => 200];
 
+        $validatedData = $request->validate([
+            'title' => 'required|max:255'
+        ]);
+
         try {
-            $result['data'] = $this->reportRepository->store($data);
+            $result['data'] = $this->reportRepository->store($validatedData);
         } catch (Exception $e) {
             $result = [
                 'status' => 500,

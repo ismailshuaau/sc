@@ -18,6 +18,4 @@ class ReportRepository extends BaseRepository implements ReportRepositoryInterfa
         parent::__construct($model);
     }
 
-
-
 }
