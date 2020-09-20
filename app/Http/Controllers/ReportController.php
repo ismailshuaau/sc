@@ -57,8 +57,6 @@ class ReportController extends Controller
         // @todo Accept only ajax requests
         //  PLEASE VERIFY AJAX
         //
-        $result = ['status' => 200];
-
         $validatedData = $request->validate([
             'title' => 'required|max:255'
         ]);
@@ -72,6 +70,9 @@ class ReportController extends Controller
             ];
         }
 
+        // If sucessful
+        $result['status'] = 200;
+
         return response()->json($result, $result['status']);
     }
 
@@ -83,7 +84,20 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        dd($this->reportRepository->show($id));
+
+        try {
+            $result['data'] = $this->reportRepository->show($id);
+        } catch(Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        // If sucessful
+        $result['status'] = 200;
+
+        return response()->json($result);
     }
 
     /**

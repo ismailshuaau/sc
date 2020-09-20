@@ -39,7 +39,7 @@
             <div>
                 <ul id="list">
                     @foreach($reports as $report)
-                    <li>{{ $report->title }} <button onclick="editReport(event.target)" class="edit" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id }}"  value="edit">Edit</button></li>
+                    <li id="report{{ $report->id }}">{{ $report->title }} <button onclick="editReport(event.target)" class="edit" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id }}"  value="edit">Edit</button></li>
                     @endforeach
                 </ul>
             </div>
@@ -65,10 +65,17 @@
                     $.ajax({
                         url: _url,
                         method: 'GET',
-                        sucess: function(response) {
-
+                        success: function(response) {
+                            let data = response.data;
                             console.log(response);
                             console.log('Response received');
+                            $(`#report${data.id}`).
+                            replaceWith(`<li>
+                                            <form id="updateFrom">
+                                                <input type="text" value="${data.title}">
+                                                <button id="ajaxUpdate" value="update">Update</button>
+                                            </form>
+                                        </li>`);
 
                         }
                     })
