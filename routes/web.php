@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 
 Route::get('reports', [ReportController::class, 'index']);
+// Routes for only ajax calls
 Route::resource('reports', ReportController::class)->except('index')->middleware('ajax');

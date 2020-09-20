@@ -63,9 +63,10 @@ class BaseRepository implements EloquentRepositoryInterface
      * @param  \App\Models\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
         //
+        return $this->model->findOrFail($id);
     }
 
     /**

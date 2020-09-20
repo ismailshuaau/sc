@@ -61,6 +61,17 @@
                     let id = $(e).data("id");
                     let _url = `/reports/${id}`;
                     console.log(_url);
+
+                    $.ajax({
+                        url: _url,
+                        method: 'GET',
+                        sucess: function(response) {
+
+                            console.log(response);
+                            console.log('Response received');
+
+                        }
+                    })
                 }
 
 
@@ -74,12 +85,12 @@
                         });
                         $.ajax({
                             url: "{{ url('/reports') }}",
-                            method: 'post',
+                            method: 'POST',
                             data: {
                                 title: jQuery('#title').val()
                             },
-                            success: function(result) {
-                                let data = result.data;
+                            success: function(response) {
+                                let data = response.data;
 
                                 console.log(data);
 

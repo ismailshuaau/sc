@@ -43,6 +43,7 @@ class ReportController extends Controller
     public function create()
     {
         //
+        return 'This is create';
     }
 
     /**
@@ -80,9 +81,9 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show($id)
     {
-        //
+        dd($this->reportRepository->show($id));
     }
 
     /**
