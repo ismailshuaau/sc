@@ -28,12 +28,20 @@
             </div> -->
             <div class="cotainer">
                 <form id="reportForm">
-                    @csrf
                     <input type="text" id="title">
-                    <button id="ajaxSave" value="save">Save</button>
+                    <button type="submit" id="ajaxSave" value="save">Save</button>
                     <!-- <button id="ajaxEdit" value="save">Edit</button> -->
-                    <button id="ajaxDelete" value="save">Delete</button>
+                    <!-- <button id="ajaxDelete" value="save">Delete</button> -->
 
+                </form>
+            </div>
+
+            <div class="cotainer">
+                <form id="reportForm">
+                    <input type="text" id="title">
+                    <button type="submit" class="ajaxUpdate" value="update">Update</button>
+                    <!-- <button id="ajaxEdit" value="save">Edit</button> -->
+                    <!-- <button id="ajaxDelete" value="save">Delete</button> -->
                 </form>
             </div>
             <div>
@@ -47,20 +55,30 @@
             <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
             <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
 
+
+
             <script>
                 // Check if the page loads
-                $( document ).ready(function() {
+                $(document).ready(function() {
                     console.log( "document loaded" );
+                });
+
+                // Update report
+                $('.ajaxUpdate').click(function(event) {
+                    event.preventDefault();
+                    console.log($('.ajaxUpdate'));
                 });
 
                 // Edit Report
                 function editReport(e) {
                     console.log('Edit Report Function');
-                    console.log(e);
+                    // console.log(e);
 
                     let id = $(e).data("id");
+
+                    console.log(id);
                     let _url = `/reports/${id}`;
-                    console.log(_url);
+                    // console.log(_url);
 
                     $.ajax({
                         url: _url,
@@ -70,16 +88,40 @@
                             console.log(response);
                             console.log('Response received');
                             $(`#report${data.id}`).
-                            replaceWith(`<li>
-                                            <form id="updateFrom">
-                                                <input type="text" value="${data.title}">
-                                                <button id="ajaxUpdate" value="update">Update</button>
-                                            </form>
-                                        </li>`);
+                            replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><a onclick="updateForm(event.target)" id="${data.id}" type="submit" class="ajaxUpdate" value="update">Update</a></form>`);
 
                         }
                     })
                 }
+
+                function updateForm(e) {
+                    console.log(e);
+                    console.log('This is update form');
+
+                    $.ajaxSetup({
+                      headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
+                    });
+
+                    // Get id
+                    let id = $(e).attr("id");
+                    let _url = `/reports/${id}`;
+
+                    // Get From data
+                    let formId = `#updateForm${id}`;
+                    let form = $(formId);
+                    let data = $('form').serialize();
+
+                    $.ajax({
+                      url: _url,
+                      method: 'POST',
+                       data: data,
+                        success: function(response) {
+                          console.log(response);
+                        }
+                    })
+                }
+
 
 
                 // Create a new report
@@ -98,16 +140,16 @@
                             },
                             success: function(response) {
                                 let data = response.data;
-
-                                console.log(data);
-
+                                // console.log(data);
                                 let report = '<li>' + data.title + '<button onclick="edit(event.target)" class="edit" id="ajaxEdit' + data.id + '" data-id="' + data.id + '"  value="edit">Edit</button></li>';
-                                console.log(report);
+                                // console.log(report);
                                 $('#list').append(report);
                             }
                         })
                     });
                 });
+
+
             </script>
     </body>
 </html>

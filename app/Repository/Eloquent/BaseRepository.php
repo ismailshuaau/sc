@@ -80,17 +80,18 @@ class BaseRepository implements EloquentRepositoryInterface
         //
     }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\Report  $report
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, Report $report)
-    // {
-    //     //
-    // }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  array  $data
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(array $data, $id)
+    {
+        $model = $this->model->findOrFail($id);
+        return $model->fill($data)->save();
+    }
 
     /**
      * Remove the specified resource from storage.

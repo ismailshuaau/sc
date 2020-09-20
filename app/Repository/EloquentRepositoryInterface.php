@@ -56,14 +56,14 @@ use Illuminate\Http\Request;
     public function edit(Request $request);
 
 
-    //  /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request);
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  array  $data
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(array $data, $id);
 
     /**
      * Remove the specified resource from storage.

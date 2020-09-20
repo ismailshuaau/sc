@@ -115,13 +115,29 @@ class ReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Report  $report
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report)
+    public function update(Request $request, $id)
     {
         //
-        return 'This is the update';
+        $validatedData = $request->validate([
+            'title' => 'required|max:255'
+        ]);
+
+        try {
+            $result['data'] = $this->reportRepository->update($validatedData, $id);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        // If sucessful
+        $result['status'] = 200;
+
+        return response()->json($result, $result['status']);
     }
 
     /**
