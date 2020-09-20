@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 
-Route::resource('reports', ReportController::class);
+Route::get('reports', [ReportController::class, 'index']);
+Route::resource('reports', ReportController::class)->except('index')->middleware('ajax');
