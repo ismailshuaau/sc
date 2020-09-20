@@ -69,7 +69,7 @@
                     console.log($('.ajaxUpdate'));
                 });
 
-                // Edit Report
+                // Load the edit report form
                 function editReport(e) {
                     console.log('Edit Report Function');
                     // console.log(e);
@@ -94,6 +94,7 @@
                     })
                 }
 
+                // Update report from database
                 function updateForm(e) {
                     console.log(e);
                     console.log('This is update form');
@@ -122,8 +123,6 @@
                     })
                 }
 
-
-
                 // Create a new report
                 $(document).ready(function() {
                     $('#ajaxSave').click(function(e){
@@ -148,8 +147,6 @@
                         })
                     });
                 });
-
-
             </script>
     </body>
 </html>
