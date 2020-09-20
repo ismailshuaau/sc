@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 
-Route::resource('report', ReportController::class);
+Route::resource('reports', ReportController::class);

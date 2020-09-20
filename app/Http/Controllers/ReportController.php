@@ -103,6 +103,7 @@ class ReportController extends Controller
     public function update(Request $request, Report $report)
     {
         //
+        return 'This is the update';
     }
 
     /**

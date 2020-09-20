@@ -30,46 +30,59 @@
                 <form id="reportForm">
                     @csrf
                     <input type="text" id="title">
-                    <button id="ajaxSubmit" value="save">Submit</button>
+                    <button id="ajaxSave" value="save">Save</button>
+                    <!-- <button id="ajaxEdit" value="save">Edit</button> -->
+                    <button id="ajaxDelete" value="save">Delete</button>
+
                 </form>
             </div>
             <div>
                 <ul id="list">
                     @foreach($reports as $report)
-                    <li>{{ $report->title }}</li>
+                    <li>{{ $report->title }} <button onclick="editReport(event.target)" class="edit" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id }}"  value="edit">Edit</button></li>
                     @endforeach
-                    <li></li>
                 </ul>
             </div>
             <!-- List of the Reports in the database -->
+            <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+            <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
 
-            <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
             <script>
+                $( document ).ready(function() {
+                    console.log( "document loaded" );
+                });
+
+                // Edit Report
+                function editReport(e) {
+                    console.log('Edit Report Function');
+                    console.log(e);
+
+                    let id = $(e).data("id");
+                    let _url = `/reports/${id}`;
+                    console.log(_url);
+                }
+
+
                 $(document).ready(function() {
-
-
-                    $('#ajaxSubmit').click(function(e){
+                    $('#ajaxSave').click(function(e){
                         e.preventDefault();
-
-                        let button = $('#ajaxSubmit').val();
-
-                        console.log(button);
-
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
                         });
-
-
                         $.ajax({
-                            url: "{{ url('/report') }}",
+                            url: "{{ url('/reports') }}",
                             method: 'post',
                             data: {
                                 title: jQuery('#title').val()
                             },
                             success: function(result) {
-                                console.log(result);
-                                let report = '<li>' + result.data.title + '</li>';
+                                let data = result.data;
+
+                                console.log(data);
+
+                                let report = '<li>' + data.title + '<button onclick="edit(event.target)" class="edit" id="ajaxEdit' + data.id + '" data-id="' + data.id + '"  value="edit">Edit</button></li>';
+                                console.log(report);
                                 $('#list').append(report);
                             }
                         })
