@@ -53,6 +53,9 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
+        // @todo Accept only ajax requests
+        //  PLEASE VERIFY AJAX
+        //
         $result = ['status' => 200];
 
         $validatedData = $request->validate([
