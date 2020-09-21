@@ -61,7 +61,7 @@
                     <div class="cotainer">
                         <form id="reportForm">
                             <i class="fas fa-trophy"></i>
-                            <input type="text" id="title">
+                            <input type="text" value="test" id="title">
                             <button  class="button btn-primary" type="submit" id="ajaxSave" value="save"><i class="fas fa-plus-circle"></i>Save Report</button>
                         </form>
                     </div>
@@ -221,10 +221,22 @@
                     })
                 }
 
+                // Delete title input when the use escapes
+                $(document).keyup(function(e) {
+                    if (e.key === "Escape") {
+                        console.log('This is escape');
+                        $('#title').attr('value', '');
+                        $('#title').attr('type', 'hidden');
+                    }
+                });
+
                 // Create a new report
                 $(document).ready(function() {
                     $('#ajaxSave').click(function(e){
                         e.preventDefault();
+
+                        // Show input field
+                        $('#title').attr('type', 'text');
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
