@@ -92,6 +92,7 @@
                         data: data,
                         success: function(response) {
                             console.log(response);
+                            $(`#report${id}`).remove();
                         }
                     })
 
