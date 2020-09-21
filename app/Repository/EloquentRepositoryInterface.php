@@ -41,10 +41,10 @@ use Illuminate\Http\Request;
     /**
      * Display the specified resource.
      *
-     * @param  $request
+     * @param  String   $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request);
+    public function show(string $id);
 
 
     /**
@@ -68,8 +68,8 @@ use Illuminate\Http\Request;
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  String  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $report);
+    public function destroy(string $id);
  }

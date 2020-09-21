@@ -40,7 +40,8 @@
                     @foreach($reports as $report)
                     <li id="report{{ $report->id }}">{{ $report->title }}
                         <button onclick="editReport(event)" class="edit" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id}}">Edit</button>
-                        <form id="deleteForm{{ $report->id}}">
+                        <form id="deleteForm{{$report->id}}">
+                            @method('DELETE')
                             <button onclick="deleteReport(event)" class="delete" id="{{$report->id }}" data-id="{{ $report->id}}" >Delete</button>
                         </form>
                     </li>
@@ -70,7 +71,7 @@
                 // Delete Report
                 function deleteReport(e) {
                     e.preventDefault();
-                    // console.log('Delete report function');
+                    console.log('Delete report function');
 
                     $.ajaxSetup({
                       headers: {
@@ -80,21 +81,19 @@
                     let id = $(e.target).data("id");
                     let url = `reports/${id}`;
 
-                    console.log(id);
-
                     // Get From data
                     let formId = `#deleteForm${id}`;
                     let form = $(formId);
                     let data = $('form').serialize();
 
-                    // $.ajax({
-                    //     url: url,
-                    //     type: 'DELETE',
-                    //     data: data,
-                    //     success: function(response) {
-                    //         console.log(response);
-                    //     }
-                    // })
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        data: data,
+                        success: function(response) {
+                            console.log(response);
+                        }
+                    })
 
                 }
 

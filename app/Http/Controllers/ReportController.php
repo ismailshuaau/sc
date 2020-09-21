@@ -7,6 +7,9 @@ use App\Repositories\ReportRepositoryInterface;
 
 class ReportController extends Controller
 {
+    //  Not actually removed from your database.
+    // use SoftDeletes;
+
     /**
      * @var ReportRepositoryInterface
      */
@@ -143,12 +146,25 @@ class ReportController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Report  $report
+     * @param  \Illuminate\Http\Request  $request
+     * @param string    $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report)
+    public function destroy($id)
     {
         //
+        try {
+            $result['data'] = $this->reportRepository->destroy($id);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        // If sucessful
+        $result['status'] = 200;
+
+        return response()->json($result, $result['status']);
     }
 }

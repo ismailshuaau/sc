@@ -60,10 +60,10 @@ class BaseRepository implements EloquentRepositoryInterface
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Request  $request
+     * @param  String $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $id)
     {
         //
         return $this->model->findOrFail($id);
@@ -96,11 +96,13 @@ class BaseRepository implements EloquentRepositoryInterface
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  String  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $report)
+    public function destroy(string $id)
     {
         //
+        $model = $this->model->findOrFail($id);
+        return $model->delete();
     }
 }
