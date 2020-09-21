@@ -34,7 +34,7 @@
                      <li class="left-align" id="report{{ $report->id }}">
                         {{ $report->title }}
                         <div class="dropdown-hover">
-                           <button class="fas fa-ellipsis-v right-align"></button>
+                           <button style="display: none" class="fas fa-ellipsis-v right-align"></button>
                            <ul class="dropdown-content bar-block border" style="right:0">
                               <li onclick="editReport(event)" class="edit bar-item button" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id}}">Edit</li>
                               <form id="deleteForm{{$report->id}}">
@@ -50,7 +50,7 @@
                <div class="cotainer">
                   <form id="reportForm">
                      <i class="fas fa-trophy"></i>
-                     <input type="text" value="" id="title">
+                     <input type="text" name="title" value="" id="title">
                      <button  class="button btn-primary" type="submit" id="ajaxSave" value="save"><i class="fas fa-plus-circle"></i>Save Report</button>
                   </form>
                </div>
@@ -112,6 +112,13 @@
              // })
          });
 
+        // After hovering a report-entry a button (3 points) appears to open a context menu
+        $("li").hover(function(){
+            $(this).find("button").css( "display", "block" );
+            }, function(){
+            $(this).find("button").css( "display", "none" );
+        });
+
          // Delete Report
          function deleteReport(e) {
              e.preventDefault();
@@ -163,7 +170,7 @@
                      console.log(response);
                      console.log('Response received');
                      $(`#report${data.id}`).
-                     replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><button onclick="updateForm(event)" data-id="${data.id}" type="submit" value="update">Update</button></form>`);
+                     replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><button onclick="updateForm(event)" data-id="${data.id}" type="submit" value="update"></button></form>`);
 
                  }
              })
@@ -175,6 +182,9 @@
              console.log(e);
              console.log('This is update form');
 
+
+
+
              $.ajaxSetup({
                headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
@@ -182,7 +192,15 @@
 
              // Get id
              let id = $(e.target).data("id");
-             let url = `/reports/${id}`;
+
+          // Clear the values of the input field
+            let title = `#update${id}`;
+            $(title).attr('value', '');
+
+            // Show input field
+            $(title).attr('type', 'text');
+
+            let url = `/reports/${id}`;
 
              // Get From data
              let formId = `#updateForm${id}`;
@@ -196,7 +214,24 @@
                method: 'POST',
                data: data,
                success: function(response) {
-                 console.log(response);
+                console.log(response);
+                // hide input field and hide it
+                let item =
+                `<li class="left-align" id="report${id}">
+                    {{ $report->title }}
+                    <div class="dropdown-hover">
+                        <button style="display: none" class="fas fa-ellipsis-v right-align"></button>
+                        <ul class="dropdown-content bar-block border" style="right:0">
+                            <li onclick="editReport(event)" class="edit bar-item button" id="ajaxEdit${id}" data-id="${id}">Edit</li>
+                            <form id="deleteForm{{$report->id}}">
+                                @method('DELETE')
+                                <li onclick="deleteReport(event)" class="delete bar-item button" id="${id}" data-id="{{ $report->id}}" >Delete</li>
+                            </form>
+                        </ul>
+                    </div>
+                </li>`;
+
+                $(title).replaceWith('success');
                }
              })
          }
@@ -205,8 +240,8 @@
          $(document).keyup(function(e) {
              if (e.key === "Escape") {
                  console.log('This is escape');
-                 $('#title').attr('value', '');
-                 $('#title').attr('type', 'hidden');
+                 $('[name ="title"]').attr('value', '');
+                 $('[name ="title"]').attr('type', 'hidden');
              }
          });
 
