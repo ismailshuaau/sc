@@ -35,19 +35,15 @@
 
                 </form>
             </div>
-
-            <div class="cotainer">
-                <form id="reportForm">
-                    <input type="text" id="title">
-                    <button type="submit" class="ajaxUpdate" value="update">Update</button>
-                    <!-- <button id="ajaxEdit" value="save">Edit</button> -->
-                    <!-- <button id="ajaxDelete" value="save">Delete</button> -->
-                </form>
-            </div>
             <div>
                 <ul id="list">
                     @foreach($reports as $report)
-                    <li id="report{{ $report->id }}">{{ $report->title }} <button onclick="editReport(event.target)" class="edit" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id }}"  value="edit">Edit</button></li>
+                    <li id="report{{ $report->id }}">{{ $report->title }}
+                        <button onclick="editReport(event)" class="edit" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id}}">Edit</button>
+                        <form id="deleteForm{{ $report->id}}">
+                            <button onclick="deleteReport(event)" class="delete" id="{{$report->id }}" data-id="{{ $report->id}}" >Delete</button>
+                        </form>
+                    </li>
                     @endforeach
                 </ul>
             </div>
@@ -61,34 +57,69 @@
                 // Check if the page loads
                 $(document).ready(function() {
                     console.log( "document loaded" );
+                    // On page load, send an ajax GET request to load all reports
+                    // $.ajax({
+                    //     url: '/reports',
+                    //     method: 'GET',
+                    //     success: function(response) {
+                    //         console.log(response);
+                    //     }
+                    // })
                 });
 
-                // Update report
-                $('.ajaxUpdate').click(function(event) {
-                    event.preventDefault();
-                    console.log($('.ajaxUpdate'));
-                });
+                // Delete Report
+                function deleteReport(e) {
+                    e.preventDefault();
+                    // console.log('Delete report function');
+
+                    $.ajaxSetup({
+                      headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
+                    });
+                    // Get id
+                    let id = $(e.target).data("id");
+                    let url = `reports/${id}`;
+
+                    console.log(id);
+
+                    // Get From data
+                    let formId = `#deleteForm${id}`;
+                    let form = $(formId);
+                    let data = $('form').serialize();
+
+                    // $.ajax({
+                    //     url: url,
+                    //     type: 'DELETE',
+                    //     data: data,
+                    //     success: function(response) {
+                    //         console.log(response);
+                    //     }
+                    // })
+
+                }
+
 
                 // Load the edit report form
                 function editReport(e) {
+                    e.preventDefault();
                     console.log('Edit Report Function');
                     // console.log(e);
 
-                    let id = $(e).data("id");
+                    let id = $(e.target).data("id");
 
                     console.log(id);
-                    let _url = `/reports/${id}`;
+                    let url = `/reports/${id}`;
                     // console.log(_url);
 
                     $.ajax({
-                        url: _url,
+                        url: url,
                         method: 'GET',
                         success: function(response) {
                             let data = response.data;
                             console.log(response);
                             console.log('Response received');
                             $(`#report${data.id}`).
-                            replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><a onclick="updateForm(event.target)" id="${data.id}" type="submit" class="ajaxUpdate" value="update">Update</a></form>`);
+                            replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><button onclick="updateForm(event)" data-id="${data.id}" type="submit" class="ajaxUpdate" value="update">Update</button></form>`);
 
                         }
                     })
@@ -96,6 +127,7 @@
 
                 // Update report from database
                 function updateForm(e) {
+                    e.preventDefault();
                     console.log(e);
                     console.log('This is update form');
 
@@ -105,8 +137,8 @@
                     });
 
                     // Get id
-                    let id = $(e).attr("id");
-                    let _url = `/reports/${id}`;
+                    let id = $(e.target).data("id");
+                    let url = `/reports/${id}`;
 
                     // Get From data
                     let formId = `#updateForm${id}`;
@@ -114,7 +146,7 @@
                     let data = $('form').serialize();
 
                     $.ajax({
-                      url: _url,
+                      url: url,
                       method: 'POST',
                        data: data,
                         success: function(response) {

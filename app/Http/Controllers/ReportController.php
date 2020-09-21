@@ -31,6 +31,7 @@ class ReportController extends Controller
     {
         //
         $reports = $this->reportRepository->index();
+        // return response()->json($reports);
         // dd($reports);
         return view('dashboard.index', compact('reports'));
     }
