@@ -88,3 +88,42 @@ body {
     cursor: pointer;
     white-space: nowrap
 }
+
+
+/* Hovering Dropdown button */
+.dropdown-hover {
+	position: static;
+	float: left
+}
+.dropdown-hover {
+	position: relative;
+	display: inline-block;
+	cursor: pointer
+}
+
+.dropdown-content {
+	cursor: auto;
+	color: #000;
+	background-color: #fff;
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	margin: 0;
+	padding: 0;
+	z-index: 1
+}
+
+.bar-block .dropdown-hover .dropdown-content,
+.bar-block .dropdown-click .dropdown-content {
+	min-width: 100%
+}
+
+.dropdown-hover:hover .dropdown-content {
+	display: block
+}
+/* Unorderedlist without bullets */
+li {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+}

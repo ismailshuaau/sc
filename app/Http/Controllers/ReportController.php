@@ -125,6 +125,8 @@ class ReportController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request);
+
         $validatedData = $request->validate([
             'title' => 'required|max:255'
         ]);
