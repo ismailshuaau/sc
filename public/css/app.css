@@ -127,3 +127,7 @@ li {
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
 }
+
+.btn-primary {
+    color: green;
+}

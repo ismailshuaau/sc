@@ -62,7 +62,7 @@
                         <form id="reportForm">
                             <i class="fas fa-trophy"></i>
                             <input type="text" id="title">
-                            <button type="submit" id="ajaxSave" value="save"><i class="fas fa-plus-circle"></i>Save Report</button>
+                            <button  class="button btn-primary" type="submit" id="ajaxSave" value="save"><i class="fas fa-plus-circle"></i>Save Report</button>
                         </form>
                     </div>
 
