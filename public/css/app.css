@@ -131,3 +131,14 @@ li {
 .btn-primary {
     color: green;
 }
+
+
+/* Hover button */
+
+.showme {
+  display: none;
+}
+
+.show:hover .showme {
+  display: block;
+}

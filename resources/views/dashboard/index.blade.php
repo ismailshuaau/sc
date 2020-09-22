@@ -31,17 +31,21 @@
                <div id="report-container" class="hide">
                   <ul id="unordered-list">
                      @foreach($reports as $report)
-                     <li class="left-align" id="report{{ $report->id }}">
-                        {{ $report->title }}
+                     <li class="left-align show" id="report{{ $report->id }}">
+                     {{ $report->title }}
+
                         <div class="dropdown-hover">
-                           <button style="display: none" class="fas fa-ellipsis-v right-align"></button>
-                           <ul class="dropdown-content bar-block border" style="right:0">
-                              <li onclick="editReport(event)" class="edit bar-item button" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id}}">Edit</li>
-                              <form id="deleteForm{{$report->id}}">
-                                 @method('DELETE')
-                                 <li onclick="deleteReport(event)" class="delete bar-item button" id="{{$report->id }}" data-id="{{ $report->id}}" >Delete</li>
-                              </form>
-                           </ul>
+                            <span class="showme"><i class="fas fa-ellipsis-v"></i></span>
+
+                            <ul class="dropdown-content bar-block border" style="right:0">
+                                <li onclick="editReport(event)" class="edit bar-item button" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id}}">Edit</li>
+                                <li>
+                                    <form id="deleteForm{{$report->id}}">
+                                        @method('DELETE')
+                                        <li onclick="deleteReport(event)" class="delete bar-item button" id="{{$report->id }}" data-id="{{ $report->id}}" >Delete</li>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                      </li>
                      @endforeach
@@ -65,8 +69,9 @@
             </div>
          </div>
       </div>
+
+
       <!-- List of the Reports in the database -->
-      <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
       <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
       <script>
          function menuOpen() {
@@ -113,76 +118,74 @@
          });
 
         // After hovering a report-entry a button (3 points) appears to open a context menu
-        $("li").hover(function(){
-            $(this).find("button").css( "display", "block" );
-            }, function(){
-            $(this).find("button").css( "display", "none" );
-        });
+        // $(".fa-ellipsis-v").css( "display", "none" );
 
-         // Delete Report
-         function deleteReport(e) {
-             e.preventDefault();
-             console.log('Delete report function');
+        // $("li").hover(function(){
+        //     $(this).find(".fa-ellipsis-v").css( "display", "block" );
+        //     }, function(){
+        //     $(this).find(".fa-ellipsis-v").css( "display", "none" );
+        // });
 
-             $.ajaxSetup({
-               headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
-             });
-             // Get id
-             let id = $(e.target).data("id");
-             let url = `reports/${id}`;
+        // Delete Report
+        function deleteReport(e) {
+            e.preventDefault();
+            console.log('Delete report function');
 
-             // Get From data
-             let formId = `#deleteForm${id}`;
-             let form = $(formId);
-             let data = $('form').serialize();
+            $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
+            });
+            // Get id
+            let id = $(e.target).data("id");
+            let url = `reports/${id}`;
 
-             $.ajax({
-                 url: url,
-                 type: 'DELETE',
-                 data: data,
-                 success: function(response) {
-                     console.log(response);
-                     $(`#report${id}`).remove();
-                 }
-             })
+            // Get From data
+            let formId = `#deleteForm${id}`;
+            let form = $(formId);
+            let data = $('form').serialize();
 
-         }
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                    $(`#report${id}`).remove();
+                }
+            })
 
-
-         // Load the edit report form
-         function editReport(e) {
-             e.preventDefault();
-             console.log('Edit Report Function');
-             // console.log(e);
-
-             let id = $(e.target).data("id");
-
-             console.log(id);
-             let url = `/reports/${id}`;
-             // console.log(_url);
-
-             $.ajax({
-                 url: url,
-                 method: 'GET',
-                 success: function(response) {
-                     let data = response.data;
-                     console.log(response);
-                     console.log('Response received');
-                     $(`#report${data.id}`).
-                     replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><button onclick="updateForm(event)" data-id="${data.id}" type="submit" value="update"></button></form>`);
-
-                 }
-             })
-         }
-
-         // Update report from database
-         function updateForm(e) {
-             e.preventDefault();
-             console.log(e);
-             console.log('This is update form');
+        }
 
 
+        // Load the edit report form
+        function editReport(e) {
+            e.preventDefault();
+            console.log('Edit Report Function');
+            // console.log(e);
+
+            let id = $(e.target).data("id");
+
+            console.log(id);
+            let url = `/reports/${id}`;
+            // console.log(_url);
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(response) {
+                    let data = response.data;
+                    console.log(response);
+                    console.log('Response received');
+                    $(`#report${data.id}`).
+                    replaceWith(`<form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" name="title" type="text" value="${data.title}"><button onclick="updateForm(event)" data-id="${data.id}" type="submit" value="update"></button></form>`);
+
+                }
+            })
+        }
+
+        // Update report from database
+        function updateForm(e) {
+          e.preventDefault();
 
 
              $.ajaxSetup({
@@ -194,18 +197,20 @@
              let id = $(e.target).data("id");
 
           // Clear the values of the input field
-            let title = `#update${id}`;
-            $(title).attr('value', '');
+            let titleId = `#update${id}`;
+            $(titleId).attr('value', '');
 
             // Show input field
-            $(title).attr('type', 'text');
+            $(titleId).attr('type', 'text');
 
             let url = `/reports/${id}`;
 
              // Get From data
              let formId = `#updateForm${id}`;
              let form = $(formId);
-             // let data = $('form').val();
+
+             console.log(form);
+
              let data = $(formId).serialize();
              console.log(data);
 
@@ -216,22 +221,28 @@
                success: function(response) {
                 console.log(response);
                 // hide input field and hide it
+                // CONTINUE FROM HERE
+                let title = form.find(titleId).val();
+                console.log(title);
+                // Prepare the form
                 let item =
                 `<li class="left-align" id="report${id}">
-                    {{ $report->title }}
+                    ${title}
                     <div class="dropdown-hover">
-                        <button style="display: none" class="fas fa-ellipsis-v right-align"></button>
+                        <button class="showhim">
+                                <span class="showme"><i class="fas fa-ellipsis-v"></i></span>
+                        </button>
                         <ul class="dropdown-content bar-block border" style="right:0">
                             <li onclick="editReport(event)" class="edit bar-item button" id="ajaxEdit${id}" data-id="${id}">Edit</li>
-                            <form id="deleteForm{{$report->id}}">
+                            <form id="deleteForm${id}">
                                 @method('DELETE')
-                                <li onclick="deleteReport(event)" class="delete bar-item button" id="${id}" data-id="{{ $report->id}}" >Delete</li>
+                                <li onclick="deleteReport(event)" class="delete bar-item button" id="${id}" data-id="${id}">Delete</li>
                             </form>
                         </ul>
                     </div>
                 </li>`;
-
-                $(title).replaceWith('success');
+                // Insert a new form with the updated title
+                $(form).replaceWith(item);
                }
              })
          }
@@ -283,7 +294,7 @@
                      })
                  }
              });
-         });
+        });
       </script>
    </body>
 </html>
