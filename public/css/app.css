@@ -62,9 +62,6 @@ body {
 	display: block
 }
 
-.hide {
-    display: none
-}
 
 .block {
 	display: block;
@@ -135,10 +132,10 @@ li {
 
 /* Hover button */
 
-.showme {
+.hide-button {
   display: none;
 }
 
-.show:hover .showme {
+.show-button:hover .hide-button {
   display: block;
 }

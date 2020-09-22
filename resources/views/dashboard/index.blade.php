@@ -28,14 +28,13 @@
             <div style="margin-left:40px">
                <button onclick="menuClose()"><i class="fa fa-chevron-left"></i> <i class="far fa-bookmark">Saved Reports</i></button>
                <button id="report-accordin" onclick="accordinOpen('report-container')" class="button block left-align"></i>my Reports <i id="accordin-arrow" class="fas fa-chevron-up"></i></button>
-               <div id="report-container" class="hide">
+               <div id="report-container" class="">
                   <ul id="unordered-list">
                      @foreach($reports as $report)
-                     <li class="left-align show" id="report{{ $report->id }}">
+                     <li class="left-align show-button" id="report{{ $report->id }}">
                      {{ $report->title }}
-
                         <div class="dropdown-hover">
-                            <span class="showme"><i class="fas fa-ellipsis-v"></i></span>
+                            <span class="hide-button"><i class="fas fa-ellipsis-v"></i></span>
 
                             <ul class="dropdown-content bar-block border" style="right:0">
                                 <li onclick="editReport(event)" class="edit bar-item button" id="ajaxEdit{{$report->id }}" data-id="{{ $report->id}}">Edit</li>
