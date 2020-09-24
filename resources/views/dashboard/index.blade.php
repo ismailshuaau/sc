@@ -361,30 +361,31 @@
                             },
                             success: function(response) {
                                 console.log(response);
-                                // let data = response.data;
+                                let data = response.data;
                                 // hide input field and hide it
                                 $(`#title-field0`).hide();
 
                                 // Prepare the item to append
-                                let item =  `<div id="reportBox{{$report->id}}">
-                                                <div class="w3-dropdown-click dropDown{{$report->id}}">
+                                // Continue from here
+                                let item =  `<div id="reportBox${data.id}">
+                                                <div class="w3-dropdown-click dropDown${data.id}">
                                                     <div class="w3-button">
                                                         <div>
                                                         <span>
                                                                 <i class="fas fa-rocket" style="color: #D65554"></i>
-                                                                <span style="margin-left: 5px;">{{ $report->title }}</span>
+                                                                <span style="margin-left: 5px;">${data.title}</span>
                                                             </span>
-                                                        <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
+                                                        <i data-id="reportDrop${data.id}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
                                                         </div>
                                                     </div>
-                                                    <div id="reportDrop{{$report->id}}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                                        <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"  class="w3-bar-item w3-button">Rename</div>
-                                                        <div onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
+                                                    <div id="reportDrop${data.id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
+                                                        <div href="#" onclick="editReport(event)" data-id="${data.id}"  class="w3-bar-item w3-button">Rename</div>
+                                                        <div onclick="document.getElementById('deleteModal${data.id}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
                                                     </div>
                                                 </div>
 
                                                 <!-- Modal for Delete -->
-                                                <div id="deleteModal{{$report->id}}" class="w3-modal">
+                                                <div id="deleteModal${data.id}" class="w3-modal">
                                                     <div class="w3-modal-content w3-animate-opacity w3-card-1">
 
                                                         <form id="deleteForm{{$report->id}}">
@@ -408,6 +409,7 @@
                                                 </div>
                                             </div>`;
 
+                                console.log(item);
 
                                 $('#reportAccord').append(item);
                             }
