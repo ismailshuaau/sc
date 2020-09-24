@@ -216,10 +216,61 @@
                     method: 'GET',
                     success: function(response) {
                         let data = response.data;
+                        let id = data.id;
+                        let title = data.title;
+
                         console.log(response);
                         console.log('Response received');
-                        $(`#reportBox${data.id}`).
-                        replaceWith(`<div id="reportBox${id}"><form id="updateForm${data.id}">@method('PUT')<input id="update${data.id}" data-id="${data.id}" name="title" type="text" value="${data.title}"><button onclick="updateForm(event)" data-id="${data.id}" type="submit" value="update"></button></form></div>`);
+                        let item = `<div id="reportBox${id}">
+                                            <div class="w3-dropdown-click dropDown${id}">
+                                                <div class="w3-button">
+                                                    <div>
+                                                    <span>
+                                                            <i class="fas fa-rocket" style="color: #D65554"></i>
+                                                            <span style="margin-left: 5px;">${id}</span>
+                                                        </span>
+                                                    <i data-id="reportDrop${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
+                                                    </div>
+                                                </div>
+                                                <div id="reportDrop${id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
+                                                    <div href="#" onclick="editReport(event)" data-id="${id}"  class="w3-bar-item w3-button">Rename</div>
+                                                    <div onclick="document.getElementById('deleteModal${id}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal for Delete -->
+                                            <div id="deleteModal${id}" class="w3-modal">
+                                                <div class="w3-modal-content w3-animate-opacity w3-card-1">
+
+                                                    <form id="deleteForm${id}">
+                                                        @method('DELETE')
+                                                        <header class="w3-container w3-teal">
+                                                        <span onclick="" class="w3-button w3-display-topright">&times;</span>
+                                                        <h2>Delete Report: ${title}</h2>
+                                                        </header>
+                                                        <div class="w3-container">
+                                                            <p> Are you sure you want to delete this Report? </p>
+                                                            <div class="modal-footer">
+                                                                <div class="w3-container w3-padding-16">
+                                                                    <button onclick="deleteReport(event)" id="${id}" data-id="${id}" type="button" class="button button3 w3-right">Delete</button>
+                                                                    <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <!-- Continue from here -->
+                                                </div>
+                                            </div>
+                                        </div>`;
+
+                        $(`#reportBox${data.id}`). // Continue from here
+                        replaceWith(`<div id="reportBox${id}"><form id="updateForm${id}">
+                                        @method('PUT')<input id="update${id}" data-id="${id}" name="title" type="text" value="${title}">
+                                        <button onclick="updateForm(event)" data-id="${id}" type="submit" value="update"></button>
+                                        </form>
+                                    </div>`);
+
+
 
                     }
                 })
