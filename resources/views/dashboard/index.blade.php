@@ -37,7 +37,7 @@
         </button>
         <!-- Accordin Start -->
         <button class="w3-button w3-block w3-left-align" style="font-weight: 100; font-size: 14px;" onclick="openAccordin()">my Reports <i id="accordin-arrow" class="fas fa-chevron-right arrow-dark"></i></button>
-        <div id="demoAcc" class="w3-bar-block w3-hide w3-white w3-card-4">
+        <div id="reportAccord" class="w3-bar-block w3-hide w3-white w3-card-4">
             @foreach ($reports as $report)
             <div id="reportBox{{$report->id}}">
                 <div class="w3-dropdown-click dropDown{{$report->id}}">
@@ -144,7 +144,7 @@
         <script>
             // Accordin open
             function openAccordin() {
-                var x = document.getElementById("demoAcc");
+                var x = document.getElementById("reportAccord");
                 if (x.className.indexOf("w3-show") == -1) {
                     x.className += " w3-show";
                     $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-down arrow-dark"></i>');
@@ -328,23 +328,21 @@
 
             // Create a new report
             $(document).ready(function() {
+
                 $('#ajaxSave').click(function(e){
-
-                    console.log(e);
-
                     e.preventDefault();
 
+                    // Select the form
                     let reportForm = $('#reportForm');
 
-                    console.log(reportForm.find('input[name="title"]')); // Continue from here
-
-                    // Get the title value
-                    let title = $('#title').val();
+                    // Get the value of title
+                    let title = reportForm.find('input[name="title"]');
+                    title = title.val();
 
                     console.log(title);
 
-                    // Clear the values of the input field
-                    $('#title').attr('value', '');
+                    // Clear the input field
+                    reportForm.find('input[name="title"]').val('');
 
                     // Show input field
                     $('#title-field0').show();
@@ -359,49 +357,59 @@
                             url: "{{ url('/reports') }}",
                             method: 'POST',
                             data: {
-                                title: $('#title').val()
+                                title: title
                             },
                             success: function(response) {
+                                console.log(response);
                                 // let data = response.data;
                                 // hide input field and hide it
-                                $(`#title-field${id}`).toggle();
-
+                                $(`#title-field0`).hide();
 
                                 // Prepare the item to append
-                                let item =  `<div class="w3-dropdown-click dropDown{{$report->id}}">
-                                                <button class="w3-button" data-id="reportDrop{{$report->id}}" onclick="dropDown(event)">{{ $report->title }}</button>
-                                                <div id="reportDrop{{$report->id}}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                                    <a href="#" class="w3-bar-item w3-button">Rename</a>
-                                                    <a onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</a>
+                                let item =  `<div id="reportBox{{$report->id}}">
+                                                <div class="w3-dropdown-click dropDown{{$report->id}}">
+                                                    <div class="w3-button">
+                                                        <div>
+                                                        <span>
+                                                                <i class="fas fa-rocket" style="color: #D65554"></i>
+                                                                <span style="margin-left: 5px;">{{ $report->title }}</span>
+                                                            </span>
+                                                        <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div id="reportDrop{{$report->id}}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
+                                                        <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"  class="w3-bar-item w3-button">Rename</div>
+                                                        <div onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Modal for Delete -->
-                                            <div id="deleteModal{{$report->id}}" class="w3-modal">
-                                                <div class="w3-modal-content w3-animate-opacity w3-card-1">
+                                                <!-- Modal for Delete -->
+                                                <div id="deleteModal{{$report->id}}" class="w3-modal">
+                                                    <div class="w3-modal-content w3-animate-opacity w3-card-1">
 
-                                                    <form id="deleteForm{{$report->id}}">
-                                                        @method('DELETE')
-                                                        <header class="w3-container w3-teal">
-                                                        <span onclick="" class="w3-button w3-display-topright">&times;</span>
-                                                        <h2>Delete Report: {{ $report->title }}</h2>
-                                                        </header>
-                                                        <div class="w3-container">
-                                                            <p> Are you sure you want to delete this Report? </p>
-                                                            <div class="modal-footer">
-                                                                <div class="w3-container w3-padding-16">
-                                                                    <button onclick="deleteReport(event)" id="{{ $report->id }}" data-id="{{ $report->id }}" type="button" class="button button3 w3-right">Delete</button>
-                                                                    <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
+                                                        <form id="deleteForm{{$report->id}}">
+                                                            @method('DELETE')
+                                                            <header class="w3-container w3-teal">
+                                                            <span onclick="" class="w3-button w3-display-topright">&times;</span>
+                                                            <h2>Delete Report: {{ $report->title }}</h2>
+                                                            </header>
+                                                            <div class="w3-container">
+                                                                <p> Are you sure you want to delete this Report? </p>
+                                                                <div class="modal-footer">
+                                                                    <div class="w3-container w3-padding-16">
+                                                                        <button onclick="deleteReport(event)" id="{{ $report->id }}" data-id="{{ $report->id }}" type="button" class="button button3 w3-right">Delete</button>
+                                                                        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
-                                                    <!-- Continue from here -->
+                                                        </form>
+                                                        <!-- Continue from here -->
+                                                    </div>
                                                 </div>
                                             </div>`;
 
 
-                                $('#demoAcc').append(item);
+                                $('#reportAccord').append(item);
                             }
                         })
                     }
