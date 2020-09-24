@@ -84,10 +84,10 @@
         </div>
 
         <!-- Add Report -->
-        <div class="">
+        <div style="">
             <form id="reportForm" class="">
-                <div class="w3-dropdown-click card">
-                    <div id="title-field0" class="w3-button">
+                <div class="">
+                    <div id="title-field0" class="w3-button" style="display: none;">
                         <i class="fas fa-rocket" style="color: #D65554"></i>
                         <span><input type="text" name="title" value="" data-id="0"></span>
                     </div>
