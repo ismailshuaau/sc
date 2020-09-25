@@ -75,7 +75,7 @@ function editReport(e) {
                                     <div id="title-field0" class="button">
                                         <i class="fas fa-rocket" style="color: #D65554"></i>
                                         <span><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
-                                        <button onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
+                                        <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
                                     </div>
                                 </div>
                             </form>
