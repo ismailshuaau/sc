@@ -6,7 +6,7 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>Story Clash</title>
       <!-- Fonts -->
-      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+      <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
 
       <!-- Style -->
       <style>
@@ -19,7 +19,7 @@
    <body>
       <!-- Side Menu 1 -->
       <div id="sidebar1">
-         <div class="w3-sidebar w3-bar-block black large" style="max-width:55px; margin-right: 30px;">
+         <div class="w3-sidebar w3-bar-block w3-black large" style="max-width:55px; margin-right: 30px;">
             <div style="height:55px;">
                 <img style='height:100%; width:100%; object-fit:contain' src="{{ asset('img/logo.png') }}" alt="">
             </div>
@@ -35,19 +35,19 @@
             </div>
         </button>
         <!-- Accordin Start -->
-        <button class="w3-button w3-block w3-left-align list-close" onclick="openAccordin()">my Reports <i id="accordin-arrow" class="fas fa-chevron-right arrow-light"></i></button>
-        <div id="reportAccord" class="w3-bar-block w3-hide w3-white w3-card-4">
+        <button id="accordinToggle" class="w3-button w3-block w3-left-align list-close" onclick="openAccordin(event)">my Reports <i id="accordin-arrow" class="fas fa-chevron-right arrow-light"></i></button>
+        <div id="reportAccord" class="w3-bar-block w3-hide w3-white">
             <div id="reportAppend">
                 @foreach ($reports as $report)
                 <div id="reportBox{{$report->id}}">
                     <div class="w3-dropdown-click dropDown{{$report->id}}">
                         <div class="w3-button">
                             <div>
-                            <span>
+                                <span>
                                     <i class="fas fa-rocket" style="color: #D65554"></i>
                                     <span class="item">{{ $report->title }}</span>
                                 </span>
-                            <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
+                                <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
                             </div>
                         </div>
                         <div id="reportDrop{{$report->id}}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
@@ -120,7 +120,7 @@
                     <li><a href="#country"></a></li>
                 </ul>
             </div>
-            <div class="container">
+            <div class="w3-container container-right">
                 <h1>Story Clash</h1>
             </div>
         </divv>
@@ -143,12 +143,21 @@
         </script>
         <script>
             // Accordin open
-            function openAccordin() {
+            function openAccordin(e) {
+
                 var x = document.getElementById("reportAccord");
                 if (x.className.indexOf("w3-show") == -1) {
+                    // Make the title bold
+                    $('#accordinToggle').removeClass('accordin-select');
+
+                    // Show all items
                     x.className += " w3-show";
+
+                    // Point the arrow downward
                     $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-down arrow-dark"></i>');
                 } else {
+                    // Make tile normal
+                    $('#accordinToggle').addClass('accordin-select');
                     // Collapse the accordin dropdown
                     x.className = x.className.replace(" w3-show", "");
                     $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-right arrow-dark"></i>');
@@ -166,9 +175,7 @@
             // Close modal
             function closeModal(e) {
                 let id = $(e.target).data("id");
-
                 console.log(id);
-
                 $(`#deleteModal${id}`).toggle();
             }
 

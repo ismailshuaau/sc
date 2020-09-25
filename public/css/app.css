@@ -1,17 +1,11 @@
-
+/* System Fonts as used by Storyclash */
 * {
     font-family: -apple-system, BlinkMacSystemFont,
     "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
     margin: 0;
-    box-sizing:border-box;
-    -webkit-box-sizing:border-box;
     color: #333333;
-}
-
-body {
-	margin: 0
 }
 
 /* Sidebar */
@@ -35,77 +29,26 @@ body {
 }
 
 
-
-/* Color */
-.black {
-	color: #fff;
-	background-color: #000
-}
-
-
-Navbar
-.large {
-    font-size: 18px
-}
-
-.xlarge {
-	font-size: 24px
-}
-.container {
-    padding: 0.01em 50px;
-    background-color: #f2f4f4;
-}
-
-
-#main {
-	transition: margin-left .4s
-}
-
-/* Accordin */
-.show {
-	display: block
-}
-
-
-.block {
-	display: block;
-	width: 100%
-}
-
-.left-align {
-	text-align: left
-}
-
-.button {
-    border: none;
-    display: inline-block;
-    padding: 8px 10px;
-    /* margin: 6px; */
-    vertical-align: middle;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    background-color: inherit;
-    text-align: center;
-    cursor: pointer;
-    white-space: nowrap
+/* Navbar */
+.container-right {
+    margin-left: 15px;
 }
 
 
 
 
-/* Input field */
+/* Input field - form */
 input {
     width: 90%;
     border: 1px solid #e5e5e5;
 }
-
 
 /* arrow icon */
 .arrow-light {
     font-size: 10px;
     color: #bbbbbb;
 }
+
 /* arrow dar */
 .arrow-dark {
     font-size: 10px;
@@ -129,12 +72,6 @@ li {
     display: inline;
 }
 
-
-/* Card */
-.w3-card-4,
-.w3-hover-shadow:hover {
-	box-shadow: none;
-}
 
 
 /* Border Grey */
@@ -160,3 +97,7 @@ li {
 }
 
 
+/* Accordin */
+.accordin-select {
+    font-weight: 500;
+}
