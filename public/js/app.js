@@ -12,7 +12,6 @@ function menuClose() {
     document.getElementById("openNav").style.display = "inline-block";
 }
 
-
 // Accordin open
 function openAccordin(e) {
 
@@ -41,8 +40,6 @@ function dropDown(e) {
     var dropdown = $(`#${id}`);
     dropdown.toggleClass("w3-show");
 }
-
-
 
 // Load the edit report form
 function editReport(e) {
@@ -134,7 +131,6 @@ function updateForm(e) {
     }
 })
 }
-
 
 // Save a report record in the database
 function saveReport(e) {

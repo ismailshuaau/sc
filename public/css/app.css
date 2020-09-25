@@ -8,6 +8,8 @@
     color: #333333;
 }
 
+
+
 /* COLORS */
 .color-trans {
     color: transparent;
@@ -15,6 +17,8 @@
 .color-valencia {
     color: #D65554;
 }
+
+
 
 /* BUTTONS */
 /* Button Hover */
@@ -34,6 +38,40 @@
 .nav-button {
     height: 56px;
     width: 30px;
+}
+
+
+
+/* ICONS */
+/* arrow icon */
+.arrow-light {
+    font-size: 10px;
+    color: #bbbbbb;
+}
+/* arrow dar */
+.arrow-dark {
+    font-size: 10px;
+    color: #515151;
+}
+/* bookmark icon */
+.bookmark {
+    font-size: 20px;
+    color: #bbbbbb;
+}
+/* Nav Logo */
+.nav-logo {
+    height: 60px;
+    width: 60px;
+}
+
+
+
+/* FIELDS */
+
+/* Input field - form */
+input {
+    width: 90%;
+    border: 1px solid #e5e5e5;
 }
 
 
@@ -58,40 +96,6 @@
 /* Navbar */
 .container-right {
     margin-left: 15px;
-}
-
-
-
-/* Input field - form */
-input {
-    width: 90%;
-    border: 1px solid #e5e5e5;
-}
-
-/* arrow icon */
-.arrow-light {
-    font-size: 10px;
-    color: #bbbbbb;
-}
-
-/* arrow dar */
-.arrow-dark {
-    font-size: 10px;
-    color: #515151;
-}
-
-/* bookmark icon */
-.bookmark {
-    font-size: 20px;
-    color: #bbbbbb;
-}
-
-
-
-/* Nav Logo */
-.nav-logo {
-    height: 60px;
-    width: 60px;
 }
 /* Navbar - Horizontal */
 li {
