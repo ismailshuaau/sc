@@ -10,7 +10,7 @@
 </div>
 
 <div id="sidebar-two" class="w3-sidebar w3-bar-block border-grey-right" style="display:none">
-    <button class="w3-bar-item button" style="padding: 15px;" onclick="menuClose()">
+    <button class="color-trans" style="padding: 15px;" onclick="menuClose()">
         <div>
             <span style="margin-right: 20px; position: relative; bottom: 3px;"> <i
                     class="fas fa-chevron-left arrow-light"></i> </span>

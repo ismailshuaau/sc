@@ -13,6 +13,7 @@
 /* COLORS */
 .color-trans {
     color: transparent;
+    background: none;
 }
 .color-valencia {
     color: #D65554;
