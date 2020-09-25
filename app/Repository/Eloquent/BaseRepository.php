@@ -37,19 +37,9 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  array $data
      * @return \Illuminate\Http\Response
      */
     public function store(array $data)
@@ -60,7 +50,7 @@ class BaseRepository implements EloquentRepositoryInterface
     /**
      * Display the specified resource.
      *
-     * @param  String $id
+     * @param  string $id
      * @return \Illuminate\Http\Response
      */
     public function show(string $id)
@@ -69,16 +59,6 @@ class BaseRepository implements EloquentRepositoryInterface
         return $this->model->findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Request  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -90,13 +70,20 @@ class BaseRepository implements EloquentRepositoryInterface
     public function update(array $data, $id)
     {
         $model = $this->model->findOrFail($id);
-        return $model->fill($data)->save();
+
+        $model = $model->fill($data)->save();
+
+        // After updating successfully return the updated values,
+        if ($model === true) {
+            $data['id'] = $id;
+            return $data;
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  String  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(string $id)
