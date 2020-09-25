@@ -51,12 +51,13 @@
                         </div>
                         <div id="reportDrop{{$report->id}}" class="dropdown-content w3-bar-block w3-white w3-card-4">
                             <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"  class="w3-bar-item button">Rename</div>
-                            <div onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
+                            <div onclick="deleteModal(event)" data-id="{{ $report->id }}" href="#" class="w3-bar-item button">Delete</div>
+                            <!-- <div onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item button">Delete</div> -->
                         </div>
                     </div>
 
                     <!-- Modal for Delete -->
-                    <div id="deleteModal{{$report->id}}" class="w3-modal">
+                    <!-- <div id="deleteModal{{$report->id}}" class="w3-modal">
                         <div class="w3-modal-content w3-animate-opacity w3-card-1" style="width: 500px;">
                             <form id="deleteForm{{$report->id}}">
                                 @method('DELETE')
@@ -77,7 +78,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 @endforeach
             </div>
@@ -94,7 +95,7 @@
                     <div class="w3-dropdown-click card">
                         <div class="button">
                             <i style="color: #19B776;" class="fas fa-plus-circle"></i>
-                            <button style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0" type="submit" id="ajaxSave" value="save">Save Report</button>
+                            <button onclick="saveReport(event)" style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0" type="submit" id="ajaxSave" value="save">Save Report</button>
                         </div>
                     </div>
                 </form>
@@ -127,219 +128,12 @@
 
         <!-- List of the Reports in the database -->
         <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+
         <script>
-            function menuOpen() {
-                document.getElementById("main").style.marginLeft = "23%";
-                document.getElementById("sidebar-two").style.width = "23%";
-                document.getElementById("sidebar-two").style.display = "block";
-                document.getElementById("openNav").style.display = 'none';
-            }
-            function menuClose() {
-                document.getElementById("main").style.marginLeft = "0%";
-                document.getElementById("sidebar-two").style.display = "none";
-                document.getElementById("openNav").style.display = "inline-block";
-            }
-        </script>
-        <script>
-            // Accordin open
-            function openAccordin(e) {
-
-                var x = document.getElementById("reportAccord");
-                if (x.className.indexOf("w3-show") == -1) {
-                    // Make the title bold
-                    $('#accordinToggle').addClass('accordin-select');
-                    // Show all items
-                    x.className += " w3-show";
-                    // Point the arrow downward
-                    $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-down arrow-dark"></i>');
-                } else {
-                    // Make tile normal
-                    $('#accordinToggle').removeClass('accordin-select');
-                    // Collapse the accordin dropdown
-                    x.className = x.className.replace(" w3-show", "");
-                    // Point the arrow right
-                    $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-right arrow-dark"></i>');
-                }
-            }
-
-            // Drop down
-            function dropDown(e) {
-                console.log('drop is working');
-                let id = $(e.target).data("id");
-                var dropdown = $(`#${id}`);
-                dropdown.toggleClass("w3-show");
-            }
-
-            // Close modal
-            function closeModal(e) {
-                let id = $(e.target).data("id");
-                console.log(id);
-                $(`#deleteModal${id}`).toggle();
-            }
-
-        </script>
-        <script>
-            // Check if the page loads
-            $(document).ready(function() {
-                console.log("document loaded");
-                // On page load, send an ajax GET request to load all reports
-                // $.ajax({
-                //     url: '/reports',
-                //     method: 'GET',
-                //     success: function(response) {
-                //         console.log(response);
-                //     }
-                // })
-            });
-
-            // After hovering a report-entry a button (3 points) appears to open a context menu
-            // $(".fa-ellipsis-v").css( "display", "none" );
-
-            // $("li").hover(function(){
-            //     $(this).find(".fa-ellipsis-v").css( "display", "block" );
-            //     }, function(){
-            //     $(this).find(".fa-ellipsis-v").css( "display", "none" );
-            // });
-
-            // Load the edit report form
-            function editReport(e) {
-
-                console.log(e);
-
-                e.preventDefault();
-                console.log('Edit Report Function');
-                // console.log(e);
-
-                let id = $(e.target).data("id");
-
-                console.log(id);
-                let url = `/reports/${id}`;
-
-                $.ajax({
-                    url: url,
-                    method: 'GET',
-                    success: function(response) {
-                        let data = response.data;
-                        let id = data.id;
-                        let title = data.title;
-
-                        console.log(response);
-                        console.log('Response received');
-                        let item = `<div id="reportBox${id}">
-                                        <form id="updateForm${id}">
-                                            @method('PUT')
-                                            <div class="w3-dropdown-click card">
-                                                <div id="title-field0" class="button">
-                                                    <i class="fas fa-rocket" style="color: #D65554"></i>
-                                                    <span><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
-                                                    <button onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>`;
-
-                        $(`#reportBox${id}`).replaceWith(item);
-                    }
-                })
-            }
-
-            // Update report from database
-            function updateForm(e) {
-                e.preventDefault();
 
 
-                $.ajaxSetup({
-                headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
-                });
-
-                // Get id
-                let id = $(e.target).data("id");
-
-                // Clear the values of the input field
-                let titleId = `#update${id}`;
-                $(titleId).attr('value', '');
-
-                // Show input field
-                $(titleId).attr('type', 'text');
-
-                let url = `/reports/${id}`;
-
-                // Get From data
-                let formId = `#updateForm${id}`;
-                let form = $(formId);
-
-                console.log(form);
-
-                let data = $(formId).serialize();
-                console.log(data);
-
-                $.ajax({
-                url: url,
-                method: 'POST',
-                data: data,
-                success: function(response) {
-                    console.log(response);
-                    // hide input field and hide it
-                    // CONTINUE FROM HERE
-                    let title = form.find(titleId).val();
-
-                    console.log(id);
-
-                    console.log(title);
-                    // Prepare the form
-
-                    let item = `<div id="reportBox${id}">
-                                    <div class="w3-dropdown-click dropDown${id}">
-                                        <div class="button">
-                                            <div>
-                                                <span>
-                                                    <i class="fas fa-rocket" style="color: #D65554"></i>
-                                                    <span style="margin-left: 5px;">${title}</span>
-                                                </span>
-                                                 <i data-id="reportDrop${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float:right;"></i>
-                                            </div>
-                                        </div>
-                                        <div id="reportDrop${id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                            <div href="#" onclick="editReport(event)" data-id="${id}" class="w3-bar-item button">Rename</div>
-                                            <div onclick="document.getElementById('deleteModal${id}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Modal for Delete -->
-                                    <div id="deleteModal${id}" class="w3-modal">
-                                        <div class="w3-modal-content w3-animate-opacity w3-card-1">
-
-                                            <form id="deleteForm${id}">
-                                                @method('DELETE')
-                                                <header class="w3-container w3-teal">
-                                                <span onclick="" class="button w3-display-topright">&times;</span>
-                                                <h2>Delete Report: ${title}</h2>
-                                                </header>
-                                                <div class="w3-container">
-                                                    <p> Are you sure you want to delete this Report? </p>
-                                                    <div class="modal-footer">
-                                                        <div class="w3-container w3-padding-16">
-                                                            <button onclick="deleteReport(event)" id="${id}" data-id="${id}" type="button" class="button button3 w3-right">Delete</button>
-                                                            <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <!-- Continue from here -->
-                                        </div>
-                                    </div>
-                                </div>`;
-
-                    // Insert a new form with the updated title
-
-                    console.log(item);
-
-
-                    $(`#reportBox${id}`).replaceWith(item);
-                }
-            })
-            }
 
             // Delete title input when the use escapes
             $(document).keyup(function(e) {
@@ -355,96 +149,100 @@
             });
 
             // Create a new report
-            $(document).ready(function() {
 
-                $('#ajaxSave').click(function(e){
-                    e.preventDefault();
 
-                    // Select the form
-                    let reportForm = $('#reportForm');
+            // function saveReport(e) {
+            //     console.log(e)
+            //     e.preventDefault();
 
-                    // Get the value of title
-                    let title = reportForm.find('input[name="title"]');
-                    title = title.val();
+            //     // Select the form
+            //     let reportForm = $('#reportForm');
 
-                    console.log(title);
+            //     // Get the value of title
+            //     let title = reportForm.find('input[name="title"]');
+            //     title = title.val();
 
-                    // Clear the input field
-                    reportForm.find('input[name="title"]').val('');
+            //     console.log(title);
 
-                    // Show input field
-                    $('#title-field0').show();
+            //     // Clear the input field
+            //     reportForm.find('input[name="title"]').val('');
 
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
-                    });
+            //     // Show input field
+            //     $('#title-field0').show();
 
-                    if (title !== '') {
-                        $.ajax({
-                            url: "{{ url('/reports') }}",
-                            method: 'POST',
-                            data: {
-                                title: title
-                            },
-                            success: function(response) {
-                                console.log(response);
-                                let data = response.data;
-                                // hide input field and hide it
-                                $(`#title-field0`).hide();
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
+            //     });
 
-                                // Prepare the item to append
-                                // Continue from here
-                                let item =  `<div id="reportBox${data.id}">
-                                                <div class="w3-dropdown-click dropDown${data.id}">
-                                                    <div class="button">
-                                                        <div>
-                                                        <span>
-                                                                <i class="fas fa-rocket" style="color: #D65554"></i>
-                                                                <span style="margin-left: 5px;">${data.title}</span>
-                                                            </span>
-                                                        <i data-id="reportDrop${data.id}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div id="reportDrop${data.id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                                        <div href="#" onclick="editReport(event)" data-id="${data.id}"  class="w3-bar-item button">Rename</div>
-                                                        <div onclick="document.getElementById('deleteModal${data.id}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
-                                                    </div>
-                                                </div>
+            //     if (title !== '') {
+            //         $.ajax({
+            //             url: "{{ url('/reports') }}",
+            //             method: 'POST',
+            //             data: {
+            //                 title: title
+            //             },
+            //             success: function(response) {
+            //                 console.log(response);
+            //                 let data = response.data;
+            //                 // hide input field and hide it
+            //                 $(`#title-field0`).hide();
 
-                                                <!-- Modal for Delete -->
-                                                <div id="deleteModal${data.id}" class="w3-modal">
-                                                    <div class="w3-modal-content w3-animate-opacity w3-card-1">
+            //                 // Prepare the item to append
+            //                 // Continue from here
+            //                 let item =  `<div id="reportBox${data.id}">
+            //                                 <div class="w3-dropdown-click dropDown${data.id}">
+            //                                     <div class="button">
+            //                                         <div>
+            //                                         <span>
+            //                                                 <i class="fas fa-rocket" style="color: #D65554"></i>
+            //                                                 <span style="margin-left: 5px;">${data.title}</span>
+            //                                             </span>
+            //                                         <i data-id="reportDrop${data.id}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
+            //                                         </div>
+            //                                     </div>
+            //                                     <div id="reportDrop${data.id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
+            //                                         <div href="#" onclick="editReport(event)" data-id="${data.id}"  class="w3-bar-item button">Rename</div>
+            //                                         <div onclick="document.getElementById('deleteModal${data.id}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
+            //                                     </div>
+            //                                 </div>
 
-                                                        <form id="deleteForm{{$report->id}}">
-                                                            @method('DELETE')
-                                                            <header class="w3-container w3-teal">
-                                                            <span onclick="" class="button w3-display-topright">&times;</span>
-                                                            <h2>Delete Report: {{ $report->title }}</h2>
-                                                            </header>
-                                                            <div class="w3-container">
-                                                                <p> Are you sure you want to delete this Report? </p>
-                                                                <div class="modal-footer">
-                                                                    <div class="w3-container w3-padding-16">
-                                                                        <button onclick="deleteReport(event)" id="{{ $report->id }}" data-id="{{ $report->id }}" type="button" class="button button3 w3-right">Delete</button>
-                                                                        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                        <!-- Continue from here -->
-                                                    </div>
-                                                </div>
-                                            </div>`;
+            //                                 <!-- Modal for Delete -->
+            //                                 <div id="deleteModal${data.id}" class="w3-modal">
+            //                                     <div class="w3-modal-content w3-animate-opacity w3-card-1">
 
-                                console.log(item);
+            //                                         <form id="deleteForm{{$report->id}}">
+            //                                             @method('DELETE')
+            //                                             <header class="w3-container w3-teal">
+            //                                             <span onclick="" class="button w3-display-topright">&times;</span>
+            //                                             <h2>Delete Report: {{ $report->title }}</h2>
+            //                                             </header>
+            //                                             <div class="w3-container">
+            //                                                 <p> Are you sure you want to delete this Report? </p>
+            //                                                 <div class="modal-footer">
+            //                                                     <div class="w3-container w3-padding-16">
+            //                                                         <button onclick="deleteReport(event)" id="{{ $report->id }}" data-id="{{ $report->id }}" type="button" class="button button3 w3-right">Delete</button>
+            //                                                         <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
+            //                                                     </div>
+            //                                                 </div>
+            //                                             </div>
+            //                                         </form>
+            //                                         <!-- Continue from here -->
+            //                                     </div>
+            //                                 </div>
+            //                             </div>`;
 
-                                $('#reportAppend').append(item);
-                            }
-                        })
-                    }
-                });
-            });
+            //                 console.log(item);
+
+            //                 $('#reportAppend').append(item);
+            //             }
+            //         })
+            //     }
+            // }
+
+
+
+
 
 
             // Delete Report
@@ -454,7 +252,7 @@
 
                 $.ajaxSetup({
                 headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
                 });
                 // Get id
                 let id = $(e.target).data("id");
