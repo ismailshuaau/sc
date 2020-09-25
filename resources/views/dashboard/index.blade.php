@@ -29,7 +29,7 @@
       <div id="sidebar-two" class="w3-sidebar w3-bar-block border-grey-right" style="display:none">
         <button class="w3-bar-item button" style="padding: 15px;" onclick="menuClose()">
             <div>
-                <span style="margin-right: 20px; position: relative; bottom: 3px;"> <i class="fas fa-chevron-left arrow"></i> </span>
+                <span style="margin-right: 20px; position: relative; bottom: 3px;"> <i class="fas fa-chevron-left arrow-light"></i> </span>
                 <span style="font-size:14px;font-weight:500;position: relative;top:1px;"><i class="far fa-bookmark bookmark"></i><span style="font-size:14px;font-weight:500;position: relative;bottom: 3px;margin-left: 20px;">Saved Reports</span></span>
             </div>
         </button>
@@ -106,7 +106,6 @@
       </div>
 
       <div id="main">
-
         <div class="teal">
             <div style="">
                 <ul style="">
@@ -121,6 +120,7 @@
                 </ul>
             </div>
             <div class="w3-container container-right">
+
             </div>
         </divv>
 
