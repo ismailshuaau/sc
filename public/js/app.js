@@ -90,6 +90,7 @@ function editReport(e) {
 function updateForm(e) {
     e.preventDefault();
 
+    let event = e;
 
     $.ajaxSetup({
     headers: {
@@ -122,62 +123,12 @@ function updateForm(e) {
     method: 'POST',
     data: data,
     success: function(response) {
+        // Prepare the form with the updated value
+        // Get the values from the server - CONTINUE FROM HERE!
+        console.log('form with the updated title');
         console.log(response);
-        // hide input field and hide it
-        // CONTINUE FROM HERE
-        let title = form.find(titleId).val();
-
-        console.log(id);
-
-        console.log(title);
-        // Prepare the form
-
-        let item = `<div id="reportBox${id}">
-                        <div class="w3-dropdown-click dropDown${id}">
-                            <div class="button">
-                                <div>
-                                    <span>
-                                        <i class="fas fa-rocket" style="color: #D65554"></i>
-                                        <span style="margin-left: 5px;">${title}</span>
-                                    </span>
-                                        <i data-id="reportDrop${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float:right;"></i>
-                                </div>
-                            </div>
-                            <div id="reportDrop${id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                <div href="#" onclick="editReport(event)" data-id="${id}" class="w3-bar-item button">Rename</div>
-                                <div onclick="document.getElementById('deleteModal${id}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
-                            </div>
-                        </div>
-
-                        <!-- Modal for Delete -->
-                        <div id="deleteModal${id}" class="w3-modal">
-                            <div class="w3-modal-content w3-animate-opacity w3-card-1">
-
-                                <form id="deleteForm${id}">
-                                    @method('DELETE')
-                                    <header class="w3-container w3-teal">
-                                    <span onclick="" class="button w3-display-topright">&times;</span>
-                                    <h2>Delete Report: ${title}</h2>
-                                    </header>
-                                    <div class="w3-container">
-                                        <p> Are you sure you want to delete this Report? </p>
-                                        <div class="modal-footer">
-                                            <div class="w3-container w3-padding-16">
-                                                <button onclick="deleteReport(event)" id="${id}" data-id="${id}" type="button" class="button button3 w3-right">Delete</button>
-                                                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="button button3 w3-right">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- Continue from here -->
-                            </div>
-                        </div>
-                    </div>`;
-
-        // Insert a new form with the updated title
-
-        console.log(item);
-
+        // generate the template for the updated report and replace it with the previous item
+        let item = reportBox(response);
 
         $(`#reportBox${id}`).replaceWith(item);
     }
