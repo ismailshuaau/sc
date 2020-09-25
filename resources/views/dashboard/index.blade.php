@@ -23,36 +23,35 @@
             <div style="height:55px;">
                 <img style='height:100%; width:100%; object-fit:contain' src="{{ asset('img/logo.png') }}" alt="">
             </div>
-            <a href="#" class="bar-item button" style="background-color: #333333;"><i class="fas fa-rocket" style="color: #ffffff"></i></a>
          </div>
       </div>
 
       <div id="sidebar-two" class="w3-sidebar w3-bar-block border-grey-right" style="display:none">
-        <button class="w3-bar-item w3-button" style="padding: 15px;" onclick="menuClose()">
+        <button class="w3-bar-item button" style="padding: 15px;" onclick="menuClose()">
             <div>
                 <span style="margin-right: 20px; position: relative; bottom: 3px;"> <i class="fas fa-chevron-left arrow"></i> </span>
                 <span style="font-size:14px;font-weight:500;position: relative;top:1px;"><i class="far fa-bookmark bookmark"></i><span style="font-size:14px;font-weight:500;position: relative;bottom: 3px;margin-left: 20px;">Saved Reports</span></span>
             </div>
         </button>
         <!-- Accordin Start -->
-        <button id="accordinToggle" class="w3-button w3-block w3-left-align list-close" onclick="openAccordin(event)">my Reports <i id="accordin-arrow" class="fas fa-chevron-right arrow-light"></i></button>
+        <button id="accordinToggle" class="button w3-block w3-left-align list-close" onclick="openAccordin(event)">my Reports <i id="accordin-arrow" class="fas fa-chevron-right arrow-light"></i></button>
         <div id="reportAccord" class="w3-bar-block w3-hide w3-white">
             <div id="reportAppend">
                 @foreach ($reports as $report)
                 <div id="reportBox{{$report->id}}">
                     <div class="w3-dropdown-click dropDown{{$report->id}}">
-                        <div class="w3-button">
+                        <div class="button item-container button-hover">
                             <div>
                                 <span>
-                                    <i class="fas fa-rocket" style="color: #D65554"></i>
+                                    <i class="fas fa-rocket color-valencia"></i>
                                     <span class="item">{{ $report->title }}</span>
                                 </span>
-                                <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)" class="fas fa-ellipsis-v" style="float: right;"></i>
+                                <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)" class="fas fa-ellipsis-v color-trans" style="float: right;"></i>
                             </div>
                         </div>
-                        <div id="reportDrop{{$report->id}}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                            <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"  class="w3-bar-item w3-button">Rename</div>
-                            <div onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
+                        <div id="reportDrop{{$report->id}}" class="dropdown-content w3-bar-block w3-white w3-card-4">
+                            <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"  class="w3-bar-item button">Rename</div>
+                            <div onclick="document.getElementById('deleteModal{{$report->id}}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
                         </div>
                     </div>
 
@@ -62,7 +61,7 @@
                             <form id="deleteForm{{$report->id}}">
                                 @method('DELETE')
                                 <header class="w3-container">
-                                <span onclick="closeModal(event)"class="w3-button w3-display-topright">&times;</span>
+                                <span onclick="closeModal(event)" data-id="{{ $report->id }}" class="button w3-display-topright">&times;</span>
                                     <h5 style="font-size: 20px; font-weight: 400;">Delete Report</h5>
                                 </header>
                                 <div class="w3-container" style="font-weight: 100;">
@@ -70,8 +69,8 @@
                                     <div class="modal-footer">
                                         <div class="w3-container w3-padding-16 w3-right">
                                             <div class="w3-bar">
-                                                <button onclick="deleteReport(event)" id="{{ $report->id }}" data-id="{{ $report->id }}" type="button" class="w3-button w3-border w3-hover-red button3"><i class="far fa-trash-alt"></i> Delete</button>
-                                                <button onclick="closeModal(event)" type="button" data-id="{{ $report->id }}" class="w3-button w3-border w3-hover-red button3">Cancel</button>
+                                                <button onclick="deleteReport(event)" id="{{ $report->id }}" data-id="{{ $report->id }}" type="button" class="button w3-border w3-hover-red button3"><i class="far fa-trash-alt"></i> Delete</button>
+                                                <button onclick="closeModal(event)" type="button" data-id="{{ $report->id }}" class="button w3-border w3-hover-red button3">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -87,13 +86,13 @@
             <div style="">
                 <form id="reportForm" class="">
                     <div class="">
-                        <div id="title-field0" class="w3-button" style="display:none;">
+                        <div id="title-field0" class="button" style="display:none;">
                             <i class="fas fa-rocket" style="color: #D65554"></i>
                             <span><input type="text" name="title" value="" data-id="0"></span>
                         </div>
                     </div>
                     <div class="w3-dropdown-click card">
-                        <div class="w3-button">
+                        <div class="button">
                             <i style="color: #19B776;" class="fas fa-plus-circle"></i>
                             <button style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0" type="submit" id="ajaxSave" value="save">Save Report</button>
                         </div>
@@ -148,18 +147,17 @@
                 var x = document.getElementById("reportAccord");
                 if (x.className.indexOf("w3-show") == -1) {
                     // Make the title bold
-                    $('#accordinToggle').removeClass('accordin-select');
-
+                    $('#accordinToggle').addClass('accordin-select');
                     // Show all items
                     x.className += " w3-show";
-
                     // Point the arrow downward
                     $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-down arrow-dark"></i>');
                 } else {
                     // Make tile normal
-                    $('#accordinToggle').addClass('accordin-select');
+                    $('#accordinToggle').removeClass('accordin-select');
                     // Collapse the accordin dropdown
                     x.className = x.className.replace(" w3-show", "");
+                    // Point the arrow right
                     $('#accordin-arrow').replaceWith('<i id="accordin-arrow" class="fas fa-chevron-right arrow-dark"></i>');
                 }
             }
@@ -231,7 +229,7 @@
                                         <form id="updateForm${id}">
                                             @method('PUT')
                                             <div class="w3-dropdown-click card">
-                                                <div id="title-field0" class="w3-button">
+                                                <div id="title-field0" class="button">
                                                     <i class="fas fa-rocket" style="color: #D65554"></i>
                                                     <span><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
                                                     <button onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
@@ -293,7 +291,7 @@
 
                     let item = `<div id="reportBox${id}">
                                     <div class="w3-dropdown-click dropDown${id}">
-                                        <div class="w3-button">
+                                        <div class="button">
                                             <div>
                                                 <span>
                                                     <i class="fas fa-rocket" style="color: #D65554"></i>
@@ -303,8 +301,8 @@
                                             </div>
                                         </div>
                                         <div id="reportDrop${id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                            <div href="#" onclick="editReport(event)" data-id="${id}" class="w3-bar-item w3-button">Rename</div>
-                                            <div onclick="document.getElementById('deleteModal${id}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
+                                            <div href="#" onclick="editReport(event)" data-id="${id}" class="w3-bar-item button">Rename</div>
+                                            <div onclick="document.getElementById('deleteModal${id}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
                                         </div>
                                     </div>
 
@@ -315,7 +313,7 @@
                                             <form id="deleteForm${id}">
                                                 @method('DELETE')
                                                 <header class="w3-container w3-teal">
-                                                <span onclick="" class="w3-button w3-display-topright">&times;</span>
+                                                <span onclick="" class="button w3-display-topright">&times;</span>
                                                 <h2>Delete Report: ${title}</h2>
                                                 </header>
                                                 <div class="w3-container">
@@ -399,7 +397,7 @@
                                 // Continue from here
                                 let item =  `<div id="reportBox${data.id}">
                                                 <div class="w3-dropdown-click dropDown${data.id}">
-                                                    <div class="w3-button">
+                                                    <div class="button">
                                                         <div>
                                                         <span>
                                                                 <i class="fas fa-rocket" style="color: #D65554"></i>
@@ -409,8 +407,8 @@
                                                         </div>
                                                     </div>
                                                     <div id="reportDrop${data.id}" class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-                                                        <div href="#" onclick="editReport(event)" data-id="${data.id}"  class="w3-bar-item w3-button">Rename</div>
-                                                        <div onclick="document.getElementById('deleteModal${data.id}').style.display='block'" href="#" class="w3-bar-item w3-button">Delete</div>
+                                                        <div href="#" onclick="editReport(event)" data-id="${data.id}"  class="w3-bar-item button">Rename</div>
+                                                        <div onclick="document.getElementById('deleteModal${data.id}').style.display='block'" href="#" class="w3-bar-item button">Delete</div>
                                                     </div>
                                                 </div>
 
@@ -421,7 +419,7 @@
                                                         <form id="deleteForm{{$report->id}}">
                                                             @method('DELETE')
                                                             <header class="w3-container w3-teal">
-                                                            <span onclick="" class="w3-button w3-display-topright">&times;</span>
+                                                            <span onclick="" class="button w3-display-topright">&times;</span>
                                                             <h2>Delete Report: {{ $report->title }}</h2>
                                                             </header>
                                                             <div class="w3-container">

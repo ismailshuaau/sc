@@ -8,11 +8,18 @@
     color: #333333;
 }
 
+/* COLORS */
+.color-trans {
+    color: transparent;
+}
+.color-valencia {
+    color: #D65554;
+}
+
 /* Sidebar */
 #sidebar-two {
     left: 55px;
 }
-
 
 /* Teal */
 .teal {
@@ -22,20 +29,15 @@
     color:#bbbbbb;
     margin-left: 27px;
 }
-
 .teal,
 .hover-teal:hover {
 	background-color: #ffffff;
 }
 
-
 /* Navbar */
 .container-right {
     margin-left: 15px;
 }
-
-
-
 
 /* Input field - form */
 input {
@@ -72,8 +74,6 @@ li {
     display: inline;
 }
 
-
-
 /* Border Grey */
 .border-grey {
     border: 1px solid #e5e5e5;
@@ -82,8 +82,7 @@ li {
     border-right: 1px solid #e5e5e5;
 }
 
-
-/* Classes for  */
+/* List of Report */
 .list-close {
     font-weight: 100;
     font-size: 14px;
@@ -96,8 +95,40 @@ li {
     margin-left: 5px;
 }
 
-
 /* Accordin */
 .accordin-select {
     font-weight: 500;
 }
+
+/* Dropdown-content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 50%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 10px;
+    top: 30px;
+}
+
+/* Report Item Container */
+.item-container {
+    padding: 5px 10px 5px 20px;
+}
+
+/* Button Hover */
+.button {
+    /* width: 100%; */
+    text-align: left;
+    padding: 8px 16px;
+    background-color: transparent;
+}
+.button:hover {
+    background-color: #F5F7F7;
+}
+/* Show the chevron button when a report entry is hovered */
+.button:hover .color-trans {
+    color: #626262;
+}
+
