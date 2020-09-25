@@ -19,9 +19,9 @@
    <body>
       <!-- Side Menu 1 -->
       <div id="sidebar1">
-         <div class="w3-sidebar w3-bar-block w3-black large" style="max-width:55px; margin-right: 30px;">
-            <div style="height:55px;">
-                <img style='height:100%; width:100%; object-fit:contain' src="{{ asset('img/logo.png') }}" alt="">
+         <div class="w3-sidebar w3-bar-block w3-black large" style="max-width:55px;">
+            <div style="height:55px; padding: 8px; background: #18b776;">
+                <img style='height:100%; width:100%; object-fit:contain;' src="{{ asset('img/logo.png') }}" alt="">
             </div>
          </div>
       </div>
@@ -109,10 +109,10 @@
 
         <div class="teal">
             <div style="">
-                <ul style="padding: 0;">
+                <ul style="">
                     <li>
                         <a href="#bookmark" style="">
-                            <button id="openNav" class="button teal border-grey"style="height: 56px;" onclick="menuOpen()"><i class="far fa-bookmark"></i></button>
+                            <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i class="far fa-bookmark light-gray"></i></button>
                         </a>
                     </li>
                     <li><a href="#users"></a></li>
@@ -121,7 +121,6 @@
                 </ul>
             </div>
             <div class="w3-container container-right">
-                <h1>Story Clash</h1>
             </div>
         </divv>
 
