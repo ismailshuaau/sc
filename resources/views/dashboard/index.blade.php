@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <!-- Side Menu 1 -->
-<div id="sidebar1">
-    <div class="w3-sidebar w3-bar-block w3-black large" style="max-width:55px;">
+<div id="sidebar-one" class="w3-sidebar w3-bar-block w3-black large">
+    <div>
         <div style="height:55px; padding: 8px; background: #18b776;">
             <img style='height:100%; width:100%; object-fit:contain;' src="{{ asset('img/logo.png') }}" alt="">
         </div>
@@ -80,8 +80,7 @@
                 <ul>
                     <li>
                         <a href="#bookmark" style="">
-                            <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i
-                                    class="far fa-bookmark light-gray"></i></button>
+                            <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i class="far fa-bookmark light-gray"></i></button>
                         </a>
                     </li>
                     <li><a href="#users"></a></li>

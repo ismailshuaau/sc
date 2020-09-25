@@ -1,7 +1,7 @@
 
 function menuOpen() {
-    document.getElementById("main").style.marginLeft = "23%";
-    document.getElementById("sidebar-two").style.width = "23%";
+    document.getElementById("main").style.marginLeft = "25%;";
+    document.getElementById("sidebar-two").style.width = "25%;";
     document.getElementById("sidebar-two").style.display = "block";
     document.getElementById("openNav").style.display = 'none';
 }

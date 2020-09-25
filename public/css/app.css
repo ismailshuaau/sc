@@ -79,6 +79,11 @@ input {
 /* Sidebar */
 #sidebar-two {
     left: 55px;
+    width: 250px;
+}
+/* Sidebar One */
+#sidebar-one {
+    max-width:60px;
 }
 
 /* Teal */
