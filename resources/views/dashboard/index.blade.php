@@ -34,7 +34,7 @@
                                 <i class="fas fa-rocket color-valencia"></i>
                                 <span class="item">{{ $report->title }}</span>
                             </span>
-                            <i data-id="reportDrop{{$report->id}}" onclick="dropDown(event)"
+                            <i data-id="{{$report->id}}" onclick="dropDown(event)"
                                 class="fas fa-ellipsis-v color-trans" style="float: right;"></i>
                         </div>
                     </div>

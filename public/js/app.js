@@ -35,10 +35,8 @@ function openAccordin(e) {
 
 // Drop down
 function dropDown(e) {
-    console.log('drop is working');
     let id = $(e.target).data("id");
-    var dropdown = $(`#${id}`);
-    dropdown.toggleClass("w3-show");
+    $(`#reportDrop${id}`).toggleClass("w3-show");
 }
 
 // Load the edit report form
@@ -197,7 +195,7 @@ function reportBox(response) {
                                     <i class="fas fa-rocket color-valencia"></i>
                                     <span class="item">${title}</span>
                                 </span>
-                                <i data-id="reportDrop${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v color-trans" style="float: right;"></i>
+                                <i data-id="${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v color-trans" style="float: right;"></i>
                             </div>
                         </div>
                         <div id="reportDrop${id}" class="dropdown-content w3-bar-block w3-white w3-card-4">
