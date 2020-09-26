@@ -41,16 +41,9 @@ function dropDown(e) {
 
 // Load the edit report form
 function editReport(e) {
-
-    console.log(e);
-
     e.preventDefault();
-    console.log('Edit Report Function');
-    // console.log(e);
 
     let id = $(e.target).data("id");
-
-    console.log(id);
     let url = `/reports/${id}`;
 
     $.ajax({
@@ -60,9 +53,6 @@ function editReport(e) {
             let data = response.data;
             let id = data.id;
             let title = data.title;
-
-            console.log(response);
-            console.log('Response received');
             let item = `<div id="reportBox${id}">
                             <form id="updateForm${id}">
                                 <input type="hidden" name="_method" value="PUT">
@@ -85,16 +75,14 @@ function editReport(e) {
 function updateForm(e) {
     e.preventDefault();
 
-    let event = e;
-
     $.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
-    });
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
+        }
+    );
 
     // Get id
     let id = $(e.target).data("id");
-
     // Clear the values of the input field
     let titleId = `#update${id}`;
     $(titleId).attr('value', '');
@@ -103,15 +91,10 @@ function updateForm(e) {
     $(titleId).attr('type', 'text');
 
     let url = `/reports/${id}`;
-
     // Get From data
     let formId = `#updateForm${id}`;
     let form = $(formId);
-
-    console.log(form);
-
     let data = $(formId).serialize();
-    console.log(data);
 
     $.ajax({
     url: url,
@@ -119,12 +102,9 @@ function updateForm(e) {
     data: data,
     success: function(response) {
         // Prepare the form with the updated value
-        // Get the values from the server - CONTINUE FROM HERE!
-        console.log('form with the updated title');
-        console.log(response);
+        // Get the values from the server
         // generate the template for the updated report and replace it with the previous item
         let item = reportBox(response);
-
         $(`#reportBox${id}`).replaceWith(item);
     }
 })
@@ -132,19 +112,14 @@ function updateForm(e) {
 
 // Save a report record in the database
 function saveReport(e) {
-    console.log(e)
     e.preventDefault();
 
     // Select the form
     let reportForm = $('#reportForm');
 
-    console.log(reportForm);
-
     // Get the value of title
     let title = reportForm.find('input[name="title"]');
     title = title.val();
-
-    console.log(title);
 
     // Clear the input field
     reportForm.find('input[name="title"]').val('');
@@ -155,8 +130,8 @@ function saveReport(e) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')                            }
-    });
-
+        }
+    );
     if (title !== '') {
         $.ajax({
             url: '/reports',
@@ -165,13 +140,10 @@ function saveReport(e) {
                 title: title
             },
             success: function(response) {
-                console.log(response);
                 // let data = response.data;
                 // hide input field and hide it
                 $(`#title-field0`).hide();
-
                 let item = reportBox(response);
-
                 $('#reportAppend').append(item);
             }
         })
@@ -182,7 +154,6 @@ function saveReport(e) {
 function reportBox(response) {
     console.log('reportBox');
     // Get the values
-    let data = response.data;
     let id = response.data.id;
     let title = response.data.title;
 
@@ -211,7 +182,6 @@ function reportBox(response) {
 function deleteModal(e) {
 
     let id = $(e.target).data("id");
-
     let modal = `<div id="deleteModal${id}" class="w3-modal" style="display:block">
                     <div class="w3-modal-content w3-animate-opacity w3-card-1" style="width: 500px;">
                             <form id="deleteForm${id}">
