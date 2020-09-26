@@ -227,8 +227,8 @@ function deleteModal(e) {
                                     <div class="modal-footer">
                                         <div class="w3-container w3-padding-16 w3-right">
                                             <div class="w3-bar">
-                                                <button onclick="deleteReport(event)" id="${id}" data-id="${id}" type="button" class="button w3-border w3-hover-red button3"><i class="far fa-trash-alt"></i> Delete</button>
-                                                <button onclick="closeModal(event)" type="button" data-id="${id}" class="button w3-border w3-hover-red button3">Cancel</button>
+                                                <button onclick="closeModal(event)" data-id="${id}" type="button" class="button button-gray button-outline-gray"><i class="fas fa-times text-gray button-outline-gray"></i> Cancel</button>
+                                                <button onclick="deleteReport(event)" id="${id}" data-id="${id}" type="button" class="button button-red button-outline-red"><i class="far fa-trash-alt text-red button-outline-red"></i> Delete</button>
                                             </div>
                                         </div>
                                     </div>
