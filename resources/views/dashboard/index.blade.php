@@ -56,7 +56,7 @@
                 <div class="">
                     <div id="title-field0" class="button" style="display:none;">
                         <i class="fas fa-rocket" style="color: #D65554"></i>
-                        <span><input type="text" name="title" value="" data-id="0"></span>
+                        <span><input id="save" type="text" name="title" value="" data-id="0"></span>
                     </div>
                 </div>
                 <div class="w3-dropdown-click card">
@@ -101,12 +101,11 @@
 
     <script>
     $(document).keyup(function(e) {
-
         if (e.key === "Escape") {
-            // If the user press escape while filling the edit form, replace it with the old value.
-            // Check if the user is trying to escape from the edit form
+            // Check if the user is trying to escape from the save or edit form
             if($(e.target).attr('id')) {
-                if($(e.target).attr('id').substr(0, 6) == 'update') {
+                // If the user press escape while filling the edit form, replace it with the old value.
+                if($(e.target).attr('id').substr(0, 6) == "update") {
                     let id = $(e.target).data("id");
                     let title = $(e.target).attr('value');
 
@@ -123,7 +122,11 @@
                 }
             }
 
-            // $(`#title-field${id}`).toggle();
+            if($(e.target).attr('id') === "save") {
+                $(`#title-field0`).toggle();
+                // Clear the input field
+                $(`#save`).replaceWith('<input id="save" type="text" name="title" value="" data-id="0">');
+            }
         }
     });
 
