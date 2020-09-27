@@ -58,11 +58,10 @@
                             <i class="fas fa-rocket color-valencia"></i>
                             <span class="item"><input id="save" type="text" name="title" value="" data-id="0"
                                     autofocus></span>
-                            <!-- <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button> -->
                         </div>
                     </div>
                     <div class="card">
-                        <div class="item-container save">
+                        <div class="save-container">
                             <i class="fas fa-plus-circle save"></i>
                             <button onclick="saveReport(event)" class="save" data-id="0"
                                 type="submit" id="ajaxSave" value="save">Save Report</button>
