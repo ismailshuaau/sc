@@ -15,7 +15,7 @@
             <div>
                 <span class="side-nav-arrow"> <i class="fas fa-chevron-left arrow-light"></i> </span>
                 <span class="side-nav-book "><i class="far fa-bookmark bookmark"></i>
-                <span class="side-nav-text">Saved Reports</span></span>
+                    <span class="side-nav-text">Saved Reports</span></span>
             </div>
         </button>
     </div>
@@ -56,40 +56,42 @@
                     <div class="">
                         <div id="title-field0" class="item-container" style="display:none;">
                             <i class="fas fa-rocket color-valencia"></i>
-                            <span class="item"><input id="save" type="text" name="title" value="" data-id="0" autofocus></span>
+                            <span class="item"><input id="save" type="text" name="title" value="" data-id="0"
+                                    autofocus></span>
                             <!-- <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button> -->
                         </div>
                     </div>
                     <div class="w3-dropdown-click card">
                         <div class="item-container">
                             <i class="fas fa-plus-circle" style="color: #19B776; background-color: transparent;"></i>
-                            <button onclick="saveReport(event)" style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0" type="submit" id="ajaxSave" value="save">Save Report</button>
-                            </div>
+                            <button onclick="saveReport(event)"
+                                style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0"
+                                type="submit" id="ajaxSave" value="save">Save Report</button>
                         </div>
                     </div>
-                </form>
             </div>
-            <!-- END / Add Report -->
+            </form>
         </div>
-        <!-- Accordin End -->
+        <!-- END / Add Report -->
     </div>
+    <!-- Accordin End -->
+</div>
 </div>
 
 
 <div id="main">
     <div class="teal">
-        <div>
-            <ul>
-                <li>
-                    <a href="#bookmark" style="">
-                        <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i class="far fa-bookmark light-gray"></i></button>
-                    </a>
-                </li>
-                <li><a href="#users"></a></li>
-                <li><a href="#date"></a></li>
-                <li><a href="#country"></a></li>
-            </ul>
-        </div>
+        <ul>
+            <li>
+                <a href="#bookmark" style="">
+                    <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i
+                            class="far fa-bookmark light-gray"></i></button>
+                </a>
+            </li>
+            <li><a href="#users"></a></li>
+            <li><a href="#date"></a></li>
+            <li><a href="#country"></a></li>
+        </ul>
 
         <div class="w3-container container-right">
 
@@ -99,6 +101,8 @@
 
     <!-- List of the Reports in the database -->
     <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/templates.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ajax.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/events.js') }}"></script>
 </div>
 @endsection
