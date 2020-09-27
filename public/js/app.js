@@ -35,6 +35,7 @@ function openAccordin(e) {
 
 // Drop down
 function dropDown(e) {
+    event.stopPropagation();
     let id = $(e.target).data("id");
     $(`#reportDrop${id}`).toggleClass("w3-show");
 }
@@ -215,4 +216,37 @@ function closeModal(e) {
     let id = $(e.target).data("id");
     console.log(id);
     $(`#deleteModal${id}`).remove();
+}
+
+// Delete Report
+function deleteReport(e) {
+    e.preventDefault();
+    console.log('Delete report function');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    // Get id
+    let id = $(e.target).data("id");
+    let url = `reports/${id}`;
+
+    // Get From data
+    let formId = `#deleteForm${id}`;
+    let form = $(formId);
+    let data = $('form').serialize();
+
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        data: data,
+        success: function(response) {
+            console.log(response);
+            $(`.dropDown${id}`).remove();
+            // Continue from here
+            closeModal(e);
+        }
+    })
+
 }

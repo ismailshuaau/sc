@@ -113,39 +113,13 @@
         }
     });
 
+    $(document).click(function() {
+       let reportDrop =  $("[id^=reportDrop]").removeClass('w3-show');
+       console.log(reportDrop);
+    });
 
-    // Delete Report
-    function deleteReport(e) {
-        e.preventDefault();
-        console.log('Delete report function');
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        // Get id
-        let id = $(e.target).data("id");
-        let url = `reports/${id}`;
 
-        // Get From data
-        let formId = `#deleteForm${id}`;
-        let form = $(formId);
-        let data = $('form').serialize();
-
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            data: data,
-            success: function(response) {
-                console.log(response);
-                $(`.dropDown${id}`).remove();
-                // Continue from here
-                closeModal(e);
-            }
-        })
-
-    }
     </script>
 </div>
 @endsection
