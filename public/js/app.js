@@ -71,31 +71,23 @@ function editReport(e) {
             let data = response.data;
             let id = data.id;
             let title = data.title;
-            let item = `<div id="reportBox${id}">
-                            <form id="updateForm${id}">
-                                <input type="hidden" name="_method" value="PUT">
-                                <div class="w3-dropdown-click card">
-                                    <div id="title-field${id}" class="button">
-                                        <i class="fas fa-rocket" style="color: #D65554"></i>
-                                        <span><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
-                                        <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>`;
 
-            let report =   `<div id="reportBox${id}">
+            let item =   `<div id="reportBox${id}">
                                 <form id="updateForm${id}" class="item-container">
                                     <div>
                                         <input type="hidden" name="_method" value="PUT">
                                         <i class="fas fa-rocket color-valencia"></i>
-                                        <span class="item"><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
+                                        <span class="item"><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}" autofocus></span>
                                         <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
                                     </div>
                                 </form>
                             </div>`;
 
-            $(`#reportBox${id}`).replaceWith(report);
+             // Replace with a new form
+            $(`#reportBox${id}`).replaceWith(item);
+            // Focus the input field
+            $(`#update${id}`).focus();
+
         }
     })
 }
@@ -155,6 +147,8 @@ function saveReport(e) {
 
     // Show input field
     $('#title-field0').show();
+    // Focus the input field
+    $('#save').focus();
 
     $.ajaxSetup({
         headers: {
@@ -309,3 +303,6 @@ $(document).keyup(function(e) {
         }
     }
 });
+
+
+

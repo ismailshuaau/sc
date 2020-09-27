@@ -202,6 +202,9 @@ li {
 
 
 /* List of Report */
+.list-container {
+    padding-top: 20px;
+}
 .list-close {
     font-weight: 100;
     font-size: 14px;
