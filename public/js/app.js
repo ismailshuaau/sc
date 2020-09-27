@@ -33,12 +33,29 @@ function openAccordin(e) {
     }
 }
 
-// Drop down
+// Dropdown toggle
 function dropDown(e) {
     event.stopPropagation();
     let id = $(e.target).data("id");
     $(`#reportDrop${id}`).toggleClass("w3-show");
 }
+// Close dropdown by clicking outside of the element
+$(document).click(function() {
+    $("[id^=reportDrop]").removeClass('w3-show');
+ });
+
+    // Delete title input when the use escapes
+// $(document).keyup(function(e) {
+
+//     let id = $(e.target).data("id");
+
+//     if (e.key === "Escape") {
+//         console.log('This is escape');
+
+//         $(`#title-field${id}`).toggle();
+//     }
+// });
+
 
 // Load the edit report form
 function editReport(e) {
@@ -58,7 +75,7 @@ function editReport(e) {
                             <form id="updateForm${id}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="w3-dropdown-click card">
-                                    <div id="title-field0" class="button">
+                                    <div id="title-field${id}" class="button">
                                         <i class="fas fa-rocket" style="color: #D65554"></i>
                                         <span><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
                                         <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>

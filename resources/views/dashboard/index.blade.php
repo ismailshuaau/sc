@@ -100,23 +100,34 @@
 
 
     <script>
-    // Delete title input when the use escapes
     $(document).keyup(function(e) {
 
-        let id = $(e.target).data("id");
-        console.log($(e.target).data("id"));
-
         if (e.key === "Escape") {
-            console.log('This is escape');
+            // If the user press escape while filling the edit form, replace it with the old value.
+            // Check if the user is trying to escape from the edit form
+            if($(e.target).attr('id')) {
+                if($(e.target).attr('id').substr(0, 6) == 'update') {
+                    let id = $(e.target).data("id");
+                    let title = $(e.target).attr('value');
 
-            $(`#title-field${id}`).toggle();
+                    let result = {
+                        data: {
+                            id: id,
+                            title: title
+                        }
+                    }
+
+                    let item = reportBox(result);
+                    // Replace the report item with the previous values
+                    $(`#reportBox${id}`).replaceWith(item);
+                }
+            }
+
+            // $(`#title-field${id}`).toggle();
         }
     });
 
-    $(document).click(function() {
-       let reportDrop =  $("[id^=reportDrop]").removeClass('w3-show');
-       console.log(reportDrop);
-    });
+
 
 
 
