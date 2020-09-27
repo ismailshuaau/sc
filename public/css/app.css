@@ -173,6 +173,32 @@ li {
     color: #bbbbbb;
 }
 
+.side-nav {
+    padding: 15px;
+}
+/* Side Nav head */
+.side-nav-head {
+    height: 56px;
+}
+.side-nav-arrow {
+    margin-right: 20px;
+    position: relative;
+    bottom: 3px;
+}
+.side-nav-book {
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    top: 1px;
+}
+.side-nav-text {
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    bottom: 3px;
+    margin-left: 20px;
+}
+
 
 
 /* List of Report */

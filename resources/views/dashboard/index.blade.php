@@ -10,16 +10,15 @@
 </div>
 
 <div id="sidebar-two" class="w3-sidebar w3-bar-block border-grey-right" style="display:none">
-    <button class="color-trans" style="padding: 15px;" onclick="menuClose()">
-        <div>
-            <span style="margin-right: 20px; position: relative; bottom: 3px;"> <i
-                    class="fas fa-chevron-left arrow-light"></i> </span>
-            <span style="font-size:14px;font-weight:500;position: relative;top:1px;"><i
-                    class="far fa-bookmark bookmark"></i><span
-                    style="font-size:14px;font-weight:500;position: relative;bottom: 3px;margin-left: 20px;">Saved
-                    Reports</span></span>
-        </div>
-    </button>
+    <div class="side-nav">
+        <button class="color-trans" onclick="menuClose()">
+            <div>
+                <span class="side-nav-arrow"> <i class="fas fa-chevron-left arrow-light"></i> </span>
+                <span class="side-nav-book "><i class="far fa-bookmark bookmark"></i>
+                <span class="side-nav-text">Saved Reports</span></span>
+            </div>
+        </button>
+    </div>
     <!-- Accordin Start -->
     <button id="accordinToggle" class="button w3-block w3-left-align list-close" onclick="openAccordin(event)">my
         Reports <i id="accordin-arrow" class="fas fa-chevron-right arrow-light"></i></button>
@@ -74,33 +73,29 @@
     <!-- Accordin End -->
 </div>
 
-    <div id="main">
-        <div class="teal">
-            <div>
-                <ul>
-                    <li>
-                        <a href="#bookmark" style="">
-                            <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i class="far fa-bookmark light-gray"></i></button>
-                        </a>
-                    </li>
-                    <li><a href="#users"></a></li>
-                    <li><a href="#date"></a></li>
-                    <li><a href="#country"></a></li>
-                </ul>
-            </div>
-            <div class="w3-container container-right">
-
-            </div>
+<div id="main">
+    <div class="teal">
+        <div>
+            <ul>
+                <li>
+                    <a href="#bookmark" style="">
+                        <button id="openNav" class="teal border-grey nav-button" onclick="menuOpen()"><i class="far fa-bookmark light-gray"></i></button>
+                    </a>
+                </li>
+                <li><a href="#users"></a></li>
+                <li><a href="#date"></a></li>
+                <li><a href="#country"></a></li>
+            </ul>
         </div>
+
+        <div class="w3-container container-right">
+
+        </div>
+    </div>
 
 
     <!-- List of the Reports in the database -->
     <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
-
-    <script>
-
-    </script>
 </div>
 @endsection
