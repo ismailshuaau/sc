@@ -84,7 +84,18 @@ function editReport(e) {
                             </form>
                         </div>`;
 
-            $(`#reportBox${id}`).replaceWith(item);
+            let report =   `<div id="reportBox${id}">
+                                <form id="updateForm${id}" class="item-container">
+                                    <div>
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <i class="fas fa-rocket color-valencia"></i>
+                                        <span class="item"><input id="update${id}" type="text" name="title" data-id="${id}" value="${title}"></span>
+                                        <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button>
+                                    </div>
+                                </form>
+                            </div>`;
+
+            $(`#reportBox${id}`).replaceWith(report);
         }
     })
 }
@@ -177,7 +188,7 @@ function reportBox(response) {
     // Insert it into the template
     let report = `<div id="reportBox${id}">
                     <div class="w3-dropdown-click dropDown${id}">
-                        <div class="button item-container button-hover">
+                        <div class="item-container">
                             <div>
                                 <span>
                                     <i class="fas fa-rocket color-valencia"></i>
