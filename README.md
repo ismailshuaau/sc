@@ -38,15 +38,19 @@ type php artisan key:generateto generate secure key in .env file
 
 
 Try to start the MySQL server:
-mysql.server start 
+
+    mysql.server start 
 
 Logging into MySQL
+
     mysql -u root -p
 
 Now you can create the database:
+
     mysql>  CREATE DATABASE storyclash;
 
 
 Then you can run. This will create the database tables for the application
+
     php artisan migrate:fresh
 
