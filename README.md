@@ -17,13 +17,13 @@ However, if you are not using Homestead, you will need to make sure your server 
 # Getting Started
 From the directory where you want to install the app, clone the project repo:
 
-git clone https://github.com/ismailshuaau/storyclash.git
+    git clone https://github.com/ismailshuaau/storyclash.git
 
 Enter the project folder and rename env.example to .env
-cp env-example .env
+    cp env-example .env
 
 Install Laravel with
-composer install
+    composer install
 
 type php artisan key:generateto generate secure key in .env file
 
@@ -41,12 +41,12 @@ Try to start the MySQL server:
 mysql.server start 
 
 Logging into MySQL
-mysql -u root -p
+    mysql -u root -p
 
 Now you can create the database:
-mysql>  CREATE DATABASE storyclash;
+    mysql>  CREATE DATABASE storyclash;
 
 
 Then you can run. This will create the database tables for the application
-php artisan migrate:fresh
+    php artisan migrate:fresh
 
