@@ -100,40 +100,36 @@
 
 
     <script>
-    $(document).keyup(function(e) {
-        if (e.key === "Escape") {
-            // Check if the user is trying to escape from the save or edit form
-            if($(e.target).attr('id')) {
-                // If the user press escape while filling the edit form, replace it with the old value.
-                if($(e.target).attr('id').substr(0, 6) == "update") {
-                    let id = $(e.target).data("id");
-                    let title = $(e.target).attr('value');
+        $(document).keyup(function(e) {
+            if (e.key === "Escape") {
+                // If the user escapes the edit form
+                if($(e.target).attr('id')) {
+                    // If the user press escape while filling the edit form, replace it with the old value.
+                    if($(e.target).attr('id').substr(0, 6) == "update") {
+                        let id = $(e.target).data("id");
+                        let title = $(e.target).attr('value');
 
-                    let result = {
-                        data: {
-                            id: id,
-                            title: title
+                        let result = {
+                            data: {
+                                id: id,
+                                title: title
+                            }
                         }
-                    }
 
-                    let item = reportBox(result);
-                    // Replace the report item with the previous values
-                    $(`#reportBox${id}`).replaceWith(item);
+                        let item = reportBox(result);
+                        // Replace the report item with the previous values
+                        $(`#reportBox${id}`).replaceWith(item);
+                    }
+                }
+
+                // If the user escapes the save form
+                if($(e.target).attr('id') === "save") {
+                    $(`#title-field0`).toggle();
+                    // Clear the input field
+                    $(`#save`).replaceWith('<input id="save" type="text" name="title" value="" data-id="0">');
                 }
             }
-
-            if($(e.target).attr('id') === "save") {
-                $(`#title-field0`).toggle();
-                // Clear the input field
-                $(`#save`).replaceWith('<input id="save" type="text" name="title" value="" data-id="0">');
-            }
-        }
-    });
-
-
-
-
-
+        });
     </script>
 </div>
 @endsection

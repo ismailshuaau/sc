@@ -170,7 +170,6 @@ function saveReport(e) {
 
 // Generate a new report template
 function reportBox(response) {
-    console.log('reportBox');
     // Get the values
     let id = response.data.id;
     let title = response.data.title;
