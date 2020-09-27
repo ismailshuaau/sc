@@ -34,10 +34,6 @@
 .button:hover {
     background-color: #F5F7F7;
 }
-/* Show the chevron button when a report entry is hovered */
-.button:hover .color-trans {
-    color: #626262;
-}
 .nav-button {
     height: 56px;
     width: 30px;
@@ -206,7 +202,16 @@ li {
 }
 /* Report Item Container */
 .item-container {
-    padding: 5px 15px 5px 20px;
+    padding: 10px 15px 10px 25px;
+    max-width: 348px;
+    max-height: 42px;
+}
+.item-container:hover {
+    background-color: #F5F7F7;
+}
+/* Show the chevron button when a report entry is hovered */
+.item-container:hover .color-trans {
+    color: #626262;
 }
 
 .back-arrow {
