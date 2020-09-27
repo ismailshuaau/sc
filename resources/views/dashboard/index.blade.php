@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="w3-dropdown-click card">
-                    <div class="button">
+                    <div class="item-container">
                         <i style="color: #19B776;" class="fas fa-plus-circle"></i>
                         <button onclick="saveReport(event)"
                             style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0"
