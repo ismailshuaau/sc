@@ -61,11 +61,10 @@
                             <!-- <button class="w3-hide" onclick="updateForm(event)" data-id="${id}" type="hidden" value="update"></button> -->
                         </div>
                     </div>
-                    <div class="w3-dropdown-click card">
-                        <div class="item-container">
-                            <i class="fas fa-plus-circle" style="color: #19B776; background-color: transparent;"></i>
-                            <button onclick="saveReport(event)"
-                                style="color: #19B776; font-weight: 500; background-color: transparent;" data-id="0"
+                    <div class="card">
+                        <div class="item-container save">
+                            <i class="fas fa-plus-circle save"></i>
+                            <button onclick="saveReport(event)" class="save" data-id="0"
                                 type="submit" id="ajaxSave" value="save">Save Report</button>
                         </div>
                     </div>
