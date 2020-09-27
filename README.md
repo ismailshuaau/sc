@@ -9,9 +9,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
@@ -60,24 +57,23 @@ For the Laravel backend to run, you will need a server (Apache or Nginx) and PHP
 
 ### Installation
 
-1. From the directory where you want to install the app, clone the project repo
-2. Clone the repo
+1. From the directory where you want to install the app, clone the repo
 ```sh
 git clone https://github.com/ismailshuaau/storyclash.git
 ```
-3. Enter the project folder and rename env.example to .env
+2. Enter the project folder and rename env.example to .env
 ```sh
 cp env-example .env
 ```
-4. Install Laravel with
+3. Install Laravel with
 ```sh
 composer install
 ```
-5. The next thing you should do after installing Laravel is set your application key 
+4. The next thing you should do after installing Laravel is set your application key 
 ```sh
 php artisan key:generate to generate secure key in .env file
 ```
-6. Set environment variables in the env to connect MySQL Server
+5. Set environment variables in the env to connect MySQL Server
 ```sh
     DB_CONNECTION = ?
     DB_DATABASE = ?
@@ -85,7 +81,7 @@ php artisan key:generate to generate secure key in .env file
     DB_PASSWORD= ?
 ```
 
-7. Create database
+6. Create database
 
 Try to start the MySQL server:
 ```sh
@@ -93,18 +89,18 @@ Try to start the MySQL server:
 ```
 
 
-Logging into MySQL
+7. Logging into MySQL
 ```sh
     mysql -u root -p
 ```
 
-Now you can create the database:
+8. Now you can create the database:
 ```sh
     mysql>  CREATE DATABASE storyclash;
 ```
 
 
-Then you can run. This will create the database tables for the application
+9. This will create the database tables for the application
 ```sh
     php artisan migrate
 ```
