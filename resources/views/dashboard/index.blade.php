@@ -40,9 +40,9 @@
                         </div>
                         <div id="reportDrop{{$report->id}}" class="dropdown-content w3-bar-block w3-white w3-card-4">
                             <div onclick="deleteModal(event)" data-id="{{ $report->id }}" href="#"
-                                class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i>  Delete</div>
+                                class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i> Delete</div>
                             <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"
-                                class="w3-bar-item button"><i class="fas fa-pen dropdown-icon"></i>  Rename</div>
+                                class="w3-bar-item button"><i class="fas fa-pen dropdown-icon"></i> Rename</div>
                         </div>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                     <div class="card">
                         <div class="save-container">
                             <i class="fas fa-plus-circle save"></i>
-                            <button onclick="saveReport(event)" class="save" data-id="0"
-                                type="submit" id="ajaxSave" value="save">Save Report</button>
+                            <button onclick="saveReport(event)" class="save" data-id="0" type="submit" id="ajaxSave"
+                                value="save">Save Report</button>
                         </div>
                     </div>
             </div>
@@ -95,8 +95,6 @@
         </div>
     </div>
 
-
-    <!-- List of the Reports in the database -->
     <script type='text/javascript' src="../js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/templates.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/ajax.js') }}"></script>
