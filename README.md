@@ -14,7 +14,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-### Make use of controller/service/repository pattern 
+#### Make use of controller/service/repository pattern 
 * app/Repository/Eloquent/BaseRepository.php
 * app/Repository/EloquentRepositoryInterface.php
 * app/Http/Controllers/ReportController.php
