@@ -23,7 +23,7 @@
 * app/Providers/RepositoryServiceProvider.php
 * app/Models/Report.php
 
-#### Proper routes for ajax calls /page url:
+#### Proper routes for ajax calls /page url
 * routes/web.php
 * app/Http/Middleware/AllowOnlyAjaxRequests.php
 * app/Http/Kernel.php
@@ -40,6 +40,7 @@
 * [W3.CSS](https://www.w3schools.com/w3css)
 * [jQuery](https://jquery.com)
 * [Laravel](https://laravel.com)
+
 
 
 <!-- GETTING STARTED -->
@@ -89,9 +90,10 @@ This will create the database tables for the application
     php artisan migrate
 ```
 
+
+
 <!-- CONTACT -->
 ## Contact
-
 Ismail Shuaau - [@ismail_shuaau](https://twitter.com/ismail_shuaau) - ismailshuaau@gmail.com
 
 Project Link: [Storyclash](https://github.com/ismailshuaau/storyclash)
