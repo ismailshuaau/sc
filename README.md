@@ -75,7 +75,7 @@ Just create an empty database here, the exact steps will depend on your system s
 mysql -u root -p
 mysql>  CREATE DATABASE storyclash;
 ```
-In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD options to match the credentials of the database you just created
+In the .env file fill in the `DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME,` and `DB_PASSWORD` options to match the credentials of the database you just created
 ```sh
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
