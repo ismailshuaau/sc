@@ -1,16 +1,17 @@
 :root {
-    --green: #19B776;
-    --valencia: #D65554;
-    --gray-light: #e5e5e5;
-    --gray-dark: #333333;
+  --green: #19B776;
+  --valencia: #D65554;
+  --gray-light: #e5e5e5;
+  --gray-dark: #333333;
 }
 
 
 
 /* ALIGN */
 .right {
-    float: right;
+  float: right;
 }
+
 /* System Fonts as used by Storyclash */
 * {
   font-family: -apple-system, BlinkMacSystemFont,
@@ -23,14 +24,15 @@
 
 /* LOGO */
 .logo {
-    height: 55px;
-    padding: 8px;
-    background: #18b776;
+  height: 55px;
+  padding: 8px;
+  background: #18b776;
 }
+
 .logo-img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 /* COLORS */
@@ -312,10 +314,11 @@ li {
 }
 
 .save-container {
-    padding: 10px 15px 10px 25px;
-    max-width: 348px;
-    max-height: 42px;
+  padding: 10px 15px 10px 25px;
+  max-width: 348px;
+  max-height: 42px;
 }
+
 .dropdown-icon {
-    padding-right: 10px;
+  padding-right: 10px;
 }
