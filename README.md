@@ -7,7 +7,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
 
@@ -101,15 +100,8 @@ php artisan serve
 ```
 Then go to the URL
 ```sh
-    http://127.0.0.1:8000/reports
+http://127.0.0.1:8000/reports
 ```
-
-
-<!-- CONTACT -->
-## Contact
-Ismail Shuaau - [@ismail_shuaau](https://twitter.com/ismail_shuaau) - ismailshuaau@gmail.com
-
-Project Link: [Storyclash](https://github.com/ismailshuaau/storyclash)
 
 
 
