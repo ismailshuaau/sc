@@ -6,6 +6,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
+* [Usage](#usage)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
@@ -87,9 +88,21 @@ In the .env file fill in the `DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME,` and `
 ```
 This will create the database tables for the application
 ```sh
-    php artisan migrate
+php artisan migrate
 ```
 
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+Run from the project route
+```sh
+php artisan serve
+```
+Then go to the URL
+```sh
+    http://127.0.0.1:8000/reports
+```
 
 
 <!-- CONTACT -->
