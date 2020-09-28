@@ -44,10 +44,6 @@
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
 For the Laravel backend to run, you will need a server (Apache or Nginx) and PHP. You can have these installed directly on your machine, or use a virtual environment. See instructions on the [Laravel](https://laravel.com)
