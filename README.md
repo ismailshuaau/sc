@@ -1,5 +1,3 @@
-
-    php artisan migrate
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
