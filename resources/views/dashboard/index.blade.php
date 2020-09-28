@@ -3,8 +3,8 @@
 <!-- Side Menu 1 -->
 <div id="sidebar-one" class="w3-sidebar w3-bar-block w3-black large">
     <div>
-        <div style="height:55px; padding: 8px; background: #18b776;">
-            <img style='height:100%; width:100%; object-fit:contain;' src="{{ asset('img/logo.png') }}" alt="">
+        <div class="logo">
+            <img class="logo-img" src="{{ asset('img/logo.png') }}" alt="">
         </div>
     </div>
 </div>
@@ -35,14 +35,14 @@
                                     <span class="item">{{ $report->title }}</span>
                                 </span>
                                 <i data-id="{{$report->id}}" onclick="dropDown(event)"
-                                    class="fas fa-ellipsis-v color-trans" style="float: right;"></i>
+                                    class="fas fa-ellipsis-v color-trans right"></i>
                             </div>
                         </div>
                         <div id="reportDrop{{$report->id}}" class="dropdown-content w3-bar-block w3-white w3-card-4">
-                            <div onclick="deleteModal(event)" data-id="{{ $report->id }}" href="#"
-                                class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i> Delete</div>
                             <div href="#" onclick="editReport(event)" data-id="{{ $report->id }}"
                                 class="w3-bar-item button"><i class="fas fa-pen dropdown-icon"></i> Rename</div>
+                            <div onclick="deleteModal(event)" data-id="{{ $report->id }}" href="#"
+                                class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i> Delete</div>
                         </div>
                     </div>
                 </div>

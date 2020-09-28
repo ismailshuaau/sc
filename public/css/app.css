@@ -4,6 +4,13 @@
     --gray-light: #e5e5e5;
     --gray-dark: #333333;
 }
+
+
+
+/* ALIGN */
+.right {
+    float: right;
+}
 /* System Fonts as used by Storyclash */
 * {
   font-family: -apple-system, BlinkMacSystemFont,
@@ -14,7 +21,17 @@
   color: var(--gray-dark);
 }
 
-
+/* LOGO */
+.logo {
+    height: 55px;
+    padding: 8px;
+    background: #18b776;
+}
+.logo-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
 
 /* COLORS */
 .color-trans {
@@ -143,7 +160,6 @@
 
 
 /* FIELDS */
-
 /* Input field - form */
 input {
   width: 70%;

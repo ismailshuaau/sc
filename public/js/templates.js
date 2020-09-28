@@ -45,12 +45,12 @@ function reportBox(response) {
                                     <i class="fas fa-rocket color-valencia"></i>
                                     <span class="item">${title}</span>
                                 </span>
-                                <i data-id="${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v color-trans" style="float: right;"></i>
+                                <i data-id="${id}" onclick="dropDown(event)" class="fas fa-ellipsis-v color-trans right"></i>
                             </div>
                         </div>
                         <div id="reportDrop${id}" class="dropdown-content w3-bar-block w3-white w3-card-4">
-                            <div onclick="deleteModal(event)" data-id="${id}" href="#" class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i> Delete</div>
                             <div href="#" onclick="editReport(event)" data-id="${id}" class="w3-bar-item button"><i class="fas fa-pen dropdown-icon"></i> Rename</div>
+                            <div onclick="deleteModal(event)" data-id="${id}" href="#" class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i> Delete</div>
                         </div>
                     </div>`;
   return report;
