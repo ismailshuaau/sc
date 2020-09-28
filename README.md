@@ -23,17 +23,18 @@
 * app/Providers/RepositoryServiceProvider.php
 * app/Models/Report.php
 
-Proper routes for ajax calls /page url:
+#### Proper routes for ajax calls /page url:
 * routes/web.php
 * app/Http/Middleware/AllowOnlyAjaxRequests.php
 * app/Http/Kernel.php
+* public/js/ajax.js
 
-Implement the styling/colors/fonts as you can see them in the screenshots 
+#### Implement the styling/colors/fonts as you can see them in the screenshots 
 * resources/views/dashboard/index.blade.php
 * resources/views/layouts/app.blade.php
 * public/js/templates.js
-* public/js/ajax.js
 * public/js/events.js
+* public/css/app.css
 
 ### Built With
 * [W3.CSS](https://www.w3schools.com/w3css)
