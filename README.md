@@ -50,30 +50,31 @@ For the Laravel backend to run, you will need a server (Apache or Nginx) and PHP
 
 ### Installation
 
-1. From the directory where you want to install the app, clone the repo
+From the directory where you want to install the app, clone the repo
 ```sh
 git clone https://github.com/ismailshuaau/storyclash.git
 ```
-2. Enter the project folder and rename env.example to .env
+Enter the project folder and rename env.example to .env
 ```sh
-cp env-example .env
+cp .env.example .env
 ```
-3. You must now install all of the project dependencies
+You must now install all of the project dependencies
 ```sh
 composer install
 ```
-4. The next thing you should do after installing Laravel is set your application key 
+The next thing you should do after installing Laravel is set your application key 
 ```sh
-php artisan key:generate to generate secure key in .env file
+php artisan key:generate
 ```
 
-5.  Create an empty database for your project using the database tools you prefer. 
-In our example we'll use a database called storyclash. Just create an empty database here, the exact steps will depend on your system setup.
+Create an empty database for your project using the database tools you prefer. 
+In our example we'll use a database called storyclash. 
+Just create an empty database here, the exact steps will depend on your system setup.
 ``` sh
 mysql -u root -p
 mysql>  CREATE DATABASE storyclash;
 ```
-6. In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD options to match the credentials of the database you just created
+In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD options to match the credentials of the database you just created
 ```sh
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -83,7 +84,7 @@ mysql>  CREATE DATABASE storyclash;
     DB_PASSWORD=
 
 ```
-9. This will create the database tables for the application
+This will create the database tables for the application
 ```sh
     php artisan migrate
 ```
