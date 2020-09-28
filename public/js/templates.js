@@ -49,8 +49,8 @@ function reportBox(response) {
                             </div>
                         </div>
                         <div id="reportDrop${id}" class="dropdown-content w3-bar-block w3-white w3-card-4">
-                            <div href="#" onclick="editReport(event)" data-id="${id}"  class="w3-bar-item button">Rename</div>
-                            <div onclick="deleteModal(event)" data-id="${id}" href="#" class="w3-bar-item button">Delete</div>
+                            <div onclick="deleteModal(event)" data-id="${id}" href="#" class="w3-bar-item button"><i class="far fa-trash-alt dropdown-icon"></i> Delete</div>
+                            <div href="#" onclick="editReport(event)" data-id="${id}" class="w3-bar-item button"><i class="fas fa-pen dropdown-icon"></i> Rename</div>
                         </div>
                     </div>`;
   return report;
