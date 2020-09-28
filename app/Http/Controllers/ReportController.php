@@ -7,7 +7,6 @@ use App\Repositories\ReportRepositoryInterface;
 
 class ReportController extends Controller
 {
-    //  Not actually removed from your database.
     // use SoftDeletes;
 
     /**
@@ -32,22 +31,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
         $reports = $this->reportRepository->index();
-        // return response()->json($reports);
-        // dd($reports);
         return view('dashboard.index', compact('reports'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return 'This is create';
     }
 
     /**
@@ -58,9 +43,6 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        // @todo Accept only ajax requests
-        //  PLEASE VERIFY AJAX
-        //
         $validatedData = $request->validate([
             'title' => 'required|max:255'
         ]);
@@ -88,7 +70,6 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-
         try {
             $result['data'] = $this->reportRepository->show($id);
         } catch(Exception $e) {
@@ -97,22 +78,10 @@ class ReportController extends Controller
                 'error' => $e->getMessage()
             ];
         }
-
         // If sucessful
         $result['status'] = 200;
 
         return response()->json($result);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Report $report)
-    {
-        //
     }
 
     /**
@@ -124,9 +93,6 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // dd($request);
-
         $validatedData = $request->validate([
             'title' => 'required|max:255'
         ]);
@@ -139,7 +105,6 @@ class ReportController extends Controller
                 'error' => $e->getMessage()
             ];
         }
-
         // If sucessful
         $result['status'] = 200;
 
@@ -154,7 +119,6 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
-        //
         try {
             $result['data'] = $this->reportRepository->destroy($id);
         } catch (Exception $e) {
@@ -163,7 +127,6 @@ class ReportController extends Controller
                 'error' => $e->getMessage()
             ];
         }
-
         // If sucessful
         $result['status'] = 200;
 
