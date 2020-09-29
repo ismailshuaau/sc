@@ -34,7 +34,7 @@ function deleteModal(e) {
 function reportBox(response) {
   // Get the values
   let id = response.data.id;
-  let title = response.data.title;
+  let title = sanitizeHTML(response.data.title);
 
   // Insert it into the template
   let report = `<div id="reportBox${id}">
