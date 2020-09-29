@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * @package App\Repositories
  */
 
- interface EloquentRepositoryInterface
+ Interface EloquentRepositoryInterface
  {
     /**
      * Display a listing of the resource.
